@@ -128,7 +128,7 @@ const faq = [
   {
     question: "Est-ce légal de géolocaliser un véhicule ?",
     answer:
-      "Sur un véhicule dont vous êtes propriétaire, oui, sans restriction. Sur un véhicule confié à un salarié ou à un client, la géolocalisation est légale à condition d'informer la personne, de déclarer le traitement au registre RGPD et de ne pas collecter de données en dehors du temps de travail. Nous fournissons la documentation type avec chaque déploiement professionnel.",
+      "Sur un véhicule dont vous êtes propriétaire et que vous utilisez seul, oui, sans formalité. Sur un véhicule confié à un salarié, la géolocalisation est légale à condition d'informer la personne, de consulter le CSE, d'inscrire le traitement au registre des traitements et de vous limiter à une finalité admise par la CNIL. La géolocalisation permanente est interdite et les trajets domicile-travail ne sont jamais traçables. Nous fournissons la documentation type avec chaque déploiement professionnel.",
   },
   {
     question: "Intervenez-vous partout en région PACA ?",

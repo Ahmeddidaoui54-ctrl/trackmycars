@@ -31,7 +31,7 @@ export const sectors: Sector[] = [
     metaDescription:
       "Tracker GPS pour voiture : localisation temps réel, alerte de déplacement, coupe-moteur à distance. Installation en France, sans engagement, garantie 2 ans.",
     intro:
-      "Un véhicule est volé toutes les quatre minutes en France, et moins d'un sur deux est retrouvé. Un traceur GPS change radicalement cette statistique : dès l'alerte de déplacement, vous connaissez la position exacte de votre voiture et pouvez transmettre les coordonnées aux forces de l'ordre en temps réel. Sur les modèles coupe-moteur, vous immobilisez le véhicule à son prochain arrêt.",
+      "125 200 véhicules ont été volés en France en 2025 selon le ministère de l'Intérieur, soit un toutes les quatre minutes. Seuls 40 % sont retrouvés — un tiers en moins d'une semaine, deux tiers en moins d'un mois. Un traceur GPS change radicalement cette statistique : dès l'alerte de déplacement, vous connaissez la position exacte de votre voiture et pouvez transmettre les coordonnées aux forces de l'ordre en temps réel. Sur les modèles coupe-moteur, vous immobilisez le véhicule à son prochain arrêt.",
     painPoints: [
       {
         title: "Le vol sans effraction",
@@ -69,7 +69,7 @@ export const sectors: Sector[] = [
       "gps voiture temps réel",
       "localiser sa voiture volée",
     ],
-    stat: { value: "1 vol", label: "toutes les 4 minutes en France" },
+    stat: { value: "125 200", label: "vols de véhicules en France en 2025" },
     faq: [
       {
         question: "Un traceur GPS peut-il être installé sur n'importe quelle voiture ?",
@@ -218,7 +218,7 @@ export const sectors: Sector[] = [
       {
         question: "Faut-il informer les conducteurs salariés ?",
         answer:
-          "Oui, c'est une obligation légale. Les salariés et les représentants du personnel doivent être informés individuellement et collectivement de la finalité du dispositif, des données collectées et de leur durée de conservation. Le traitement doit figurer au registre RGPD de l'entreprise. Nous fournissons un modèle de note d'information avec chaque déploiement professionnel.",
+          "Oui, c'est une obligation légale. Chaque salarié doit être informé individuellement (article L.1222-4 du Code du travail) et le CSE consulté lorsqu'il existe (article L.2312-38). Aucune déclaration préalable à la CNIL n'est requise, mais le traitement doit figurer au registre des traitements de l'entreprise, avec une analyse d'impact si nécessaire. La CNIL retient une durée de conservation de deux mois en principe, et les trajets domicile-travail ne peuvent jamais être tracés. Nous fournissons un modèle de note d'information avec chaque déploiement professionnel.",
       },
     ],
   },
@@ -275,7 +275,7 @@ export const sectors: Sector[] = [
       {
         question: "Puis-je géolocaliser un chauffeur salarié ?",
         answer:
-          "Vous pouvez géolocaliser le véhicule pendant le temps de travail, à condition d'informer le salarié, de déclarer le traitement au registre RGPD et de limiter la finalité (sécurité du véhicule, gestion de l'activité). La géolocalisation en dehors du temps de travail est interdite : le dispositif doit pouvoir être désactivé, ou les données de cette période ne pas être exploitées.",
+          "Vous pouvez géolocaliser le véhicule pendant le temps de travail, à condition d'informer le salarié, d'inscrire le traitement au registre des traitements et de vous limiter à une finalité admise par la CNIL : sécurité du véhicule, facturation d'une prestation ou optimisation des tournées. La géolocalisation permanente est interdite et les trajets domicile-travail ne sont jamais traçables : le dispositif doit pouvoir être désactivé par le conducteur en dehors de son temps de travail.",
       },
       {
         question: "Le GPS interfère-t-il avec le taximètre ou l'application VTC ?",
@@ -408,7 +408,7 @@ export const sectors: Sector[] = [
       {
         question: "La géolocalisation des véhicules de société est-elle légale ?",
         answer:
-          "Oui, sous conditions strictes. Vous devez : informer individuellement chaque salarié concerné, consulter le CSE lorsqu'il existe, inscrire le traitement au registre RGPD, limiter la collecte à une finalité déterminée, et ne pas géolocaliser en dehors du temps de travail. Un salarié doit pouvoir désactiver le suivi pendant ses pauses et trajets personnels. Nous fournissons la documentation type.",
+          "Oui, sous conditions strictes. Vous devez informer individuellement chaque salarié concerné (article L.1222-4 du Code du travail), consulter le CSE lorsqu'il existe (article L.2312-38) et inscrire le traitement au registre des traitements — aucune déclaration préalable à la CNIL n'est en revanche requise. La finalité doit figurer parmi celles admises par la CNIL : facturation, sécurité, optimisation des tournées, ou suivi du temps de travail à titre subsidiaire seulement. La géolocalisation permanente est interdite, les trajets domicile-travail ne sont jamais traçables, et la durée de conservation est de deux mois en principe. Nous fournissons la documentation type.",
       },
       {
         question: "Combien de temps prend le déploiement sur 20 véhicules ?",
@@ -432,7 +432,7 @@ export const sectors: Sector[] = [
     metaDescription:
       "GPS pour mini-pelle, nacelle, compacteur et matériel BTP : antivol autonome sans câblage, alerte de déplacement, suivi des heures. Garantie 2 ans.",
     intro:
-      "Le matériel de chantier est volé parce qu'il est facile à charger, difficile à identifier et impossible à retracer sans dispositif. Une mini-pelle disparue un vendredi soir est démontée ou exportée avant le lundi. Le traceur aimanté, sans câblage ni alimentation, se pose sur n'importe quel engin en trente secondes.",
+      "68 % des professionnels du BTP ont été confrontés au vol en 2025, contre 50 % en 2022, pour une perte moyenne de 31 000 € par entreprise et plus de 400 millions d'euros à l'échelle du secteur. Les vols d'engins ont progressé de 14 % sur l'année, à contre-courant de la baisse générale des vols de véhicules. Le matériel de chantier est visé parce qu'il est facile à charger, difficile à identifier et impossible à retracer sans dispositif. Une mini-pelle disparue un vendredi soir est démontée ou exportée avant le lundi. Le traceur aimanté, sans câblage ni alimentation, se pose sur n'importe quel engin en trente secondes.",
     painPoints: [
       {
         title: "Le vol de week-end",
@@ -469,7 +469,7 @@ export const sectors: Sector[] = [
       "tracker gps matériel chantier",
       "geolocalisation engin tp",
     ],
-    stat: { value: "48 h", label: "d'avance prise par un voleur de week-end" },
+    stat: { value: "31 000 €", label: "de perte moyenne par entreprise du BTP" },
     faq: [
       {
         question: "Comment fixer un traceur sur un engin qui vibre beaucoup ?",

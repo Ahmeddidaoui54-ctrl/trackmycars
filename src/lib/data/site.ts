@@ -10,7 +10,7 @@ export const site = {
   regionCode: "FR-PAC",
   tagline: "Suivi GPS professionnel pour véhicules et matériels",
   description:
-    "Trackers GPS professionnels pour voitures, flottes, poids lourds et engins. Installation et livraison en région PACA. Sans engagement, garantie 3 ans.",
+    "Trackers GPS professionnels pour voitures, flottes, poids lourds et engins. Installation et livraison en région PACA. Formule sans engagement, garantie 2 ans.",
   social: {
     instagram: "https://www.instagram.com/trackmycars",
     tiktok: "https://www.tiktok.com/@trackmycars",
@@ -18,7 +18,7 @@ export const site = {
   },
   guarantees: [
     { label: "Couverture mondiale", detail: "Plus de 150 pays, sans frais de roaming" },
-    { label: "Sans engagement", detail: "Abonnement résiliable à tout moment" },
+    { label: "Sans engagement", detail: "Formule mensuelle résiliable à tout moment" },
     { label: "Garantie 2 ans", detail: "Matériel garanti pièces et main-d'œuvre" },
     { label: "Support français", detail: "Équipe basée en France, joignable directement" },
   ],

@@ -61,11 +61,13 @@ export default function ConfidentialitePage() {
                 Durées de conservation
               </h2>
               <p className="mt-3">
-                Les historiques de position sont conservés trois mois en offre
-                Essentiel, douze mois en offre Pro et sans limite en offre Flotte, ces
-                durées étant paramétrables à la baisse depuis votre compte. Les données
-                de contact issues d&apos;une demande de devis sont conservées trois ans
-                à compter du dernier échange.
+                Les historiques de position sont conservés au maximum douze mois et
+                paramétrables à la baisse depuis votre compte. Dans un contexte
+                professionnel, la CNIL retient une durée de deux mois en principe pour
+                les données de géolocalisation des salariés : il vous appartient de
+                régler la conservation en conséquence. Les données de contact issues
+                d&apos;une demande de devis sont conservées trois ans à compter du
+                dernier échange.
               </p>
             </section>
 
@@ -85,11 +87,14 @@ export default function ConfidentialitePage() {
               <p className="mt-3">
                 Lorsque vous équipez un véhicule conduit par un salarié, un locataire
                 ou toute autre personne, vous devenez responsable de traitement au sens
-                du RGPD. Il vous appartient d&apos;informer les personnes concernées,
-                de consulter les instances représentatives du personnel lorsqu&apos;elles
-                existent, d&apos;inscrire le traitement à votre registre et de ne pas
-                collecter de données en dehors du temps de travail. Nous mettons à
-                votre disposition une note d&apos;information type.
+                du RGPD. Il vous appartient d&apos;informer individuellement les
+                personnes concernées (article L.1222-4 du Code du travail), de consulter
+                le CSE lorsqu&apos;il existe (article L.2312-38) et d&apos;inscrire le
+                traitement à votre registre. Aucune déclaration préalable à la CNIL
+                n&apos;est requise, mais une analyse d&apos;impact peut l&apos;être. La
+                géolocalisation permanente est interdite et les trajets domicile-travail
+                ne peuvent jamais être tracés. Nous mettons à votre disposition une note
+                d&apos;information type.
               </p>
             </section>
 

@@ -48,7 +48,7 @@ const legal = [
   {
     question: "Quelles obligations pour une flotte d'entreprise ?",
     answer:
-      "Quatre obligations principales : informer individuellement chaque salarié concerné, consulter le CSE lorsqu'il existe, inscrire le traitement au registre RGPD de l'entreprise en précisant la finalité et la durée de conservation, et ne pas collecter de données en dehors du temps de travail. Le salarié doit pouvoir désactiver le suivi pendant ses trajets personnels et ses pauses. Nous fournissons un modèle de note d'information avec chaque déploiement professionnel.",
+      "Quatre obligations. Informer individuellement chaque salarié concerné (article L.1222-4 du Code du travail). Consulter le CSE lorsqu'il existe (article L.2312-38). Inscrire le traitement au registre des traitements — aucune déclaration préalable à la CNIL n'est requise, mais une analyse d'impact peut l'être. Enfin, se limiter à une finalité admise : facturation d'une prestation, sécurité, optimisation des tournées, ou suivi du temps de travail à titre subsidiaire uniquement. La géolocalisation permanente est interdite, les trajets domicile-travail ne sont jamais traçables, et la CNIL retient une conservation de deux mois en principe. Nous fournissons un modèle de note d'information avec chaque déploiement professionnel.",
   },
   {
     question: "Puis-je géolocaliser le véhicule d'un client en location ?",

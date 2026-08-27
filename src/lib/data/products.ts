@@ -104,7 +104,7 @@ export const products: Product[] = [
       {
         question: "L'installation d'un coupe-moteur est-elle légale ?",
         answer:
-          "Oui. L'installation d'un dispositif de géolocalisation et d'immobilisation sur un véhicule dont vous êtes propriétaire est parfaitement légale en France. Dans un contexte professionnel, l'employeur doit informer les salariés, déclarer le traitement au registre RGPD et respecter la finalité déclarée.",
+          "Oui. L'installation d'un dispositif de géolocalisation et d'immobilisation sur un véhicule dont vous êtes propriétaire est parfaitement légale en France. Dans un contexte professionnel, l'employeur doit informer individuellement les salariés, consulter le CSE, inscrire le traitement au registre des traitements et respecter la finalité déclarée.",
       },
       {
         question: "Le tracker est-il détectable par un voleur ?",
