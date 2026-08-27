@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Sarabun, Bai_Jamjuree } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
@@ -9,10 +9,18 @@ import "./globals.css";
 const GOOGLE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 const BING_VERIFICATION = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
 
-const inter = Inter({
+const sarabun = Sarabun({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-sarabun",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const baiJamjuree = Bai_Jamjuree({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bai",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -68,9 +76,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={inter.variable}>
+    <html lang="fr" className={`${sarabun.variable} ${baiJamjuree.variable}`}>
       <head>
-        <meta name="theme-color" content="#0d2233" />
+        <meta name="theme-color" content="#0e111b" />
         {/* Local SEO — région PACA */}
         <meta name="geo.region" content="FR-PAC" />
         <meta name="geo.placename" content="Provence-Alpes-Côte d'Azur, France" />

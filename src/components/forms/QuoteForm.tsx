@@ -7,7 +7,7 @@ import { site } from "@/lib/data/site";
 
 const fleetSizes = ["1 véhicule", "2 à 5", "6 à 20", "21 à 50", "Plus de 50"];
 
-export function QuoteForm() {
+export function QuoteForm({ compact = false }: { compact?: boolean }) {
   const [sent, setSent] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -42,7 +42,9 @@ export function QuoteForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border border-border rounded-lg p-6 sm:p-8 bg-background"
+      className={`border border-border/50 rounded-xl p-6 sm:p-8 bg-white ${
+        compact ? "shadow-lg" : ""
+      }`}
     >
       <h2 className="text-xl font-bold">Votre demande</h2>
       <p className="mt-1.5 text-sm text-muted-foreground">
@@ -154,7 +156,7 @@ export function QuoteForm() {
 
       <button
         type="submit"
-        className="mt-7 w-full sm:w-auto bg-accent text-accent-foreground px-8 py-3 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
+        className="mt-7 btn btn-primary w-full sm:w-auto"
       >
         Envoyer ma demande
       </button>

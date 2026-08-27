@@ -12,7 +12,7 @@ export function Section({
 }) {
   return (
     <section
-      className={`${dark ? "bg-primary text-primary-foreground grid-bg" : ""} ${className}`}
+      className={`${dark ? "bg-primary text-white " : ""} ${className}`}
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:py-20">{children}</div>
     </section>
@@ -50,9 +50,9 @@ export function CTA({
   variant?: "primary" | "outline" | "light";
 }) {
   const styles = {
-    primary: "bg-accent text-accent-foreground hover:opacity-90",
-    outline: "border border-current hover:bg-accent hover:text-accent-foreground hover:border-accent",
-    light: "bg-background text-primary hover:bg-accent hover:text-accent-foreground",
+    primary: "bg-cta text-cta-foreground hover:opacity-90",
+    outline: "border border-current hover:bg-cta hover:text-cta-foreground hover:border-cta",
+    light: "bg-background text-primary hover:bg-cta hover:text-cta-foreground",
   };
   return (
     <Link
@@ -78,7 +78,7 @@ export function Breadcrumbs({
             {i === items.length - 1 ? (
               <span className="text-foreground font-medium">{item.name}</span>
             ) : (
-              <Link href={item.href} className="hover:text-accent">
+              <Link href={item.href} className="hover:text-cta">
                 {item.name}
               </Link>
             )}
@@ -100,7 +100,7 @@ export function FaqList({
         <details key={item.question} className="group py-5">
           <summary className="flex cursor-pointer items-start justify-between gap-4 list-none">
             <h3 className="text-base font-semibold leading-snug">{item.question}</h3>
-            <span className="mt-1 shrink-0 text-accent transition-transform group-open:rotate-45" aria-hidden="true">
+            <span className="mt-1 shrink-0 text-cta transition-transform group-open:rotate-45" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M12 5v14M5 12h14" />
               </svg>
