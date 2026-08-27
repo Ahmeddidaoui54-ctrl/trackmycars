@@ -158,8 +158,8 @@ export default function ProduitsPage() {
           ))}
         </div>
         <div className="mt-8">
-          <CTA href="/abonnements" variant="outline">
-            Détail des abonnements
+          <CTA href="/tarifs" variant="outline">
+            Tarifs et abonnements
           </CTA>
         </div>
       </Section>

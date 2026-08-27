@@ -55,12 +55,7 @@ export function Footer() {
               ))}
               <li>
                 <Link href="/tarifs" className="text-white/70 hover:text-cta">
-                  Tarifs
-                </Link>
-              </li>
-              <li>
-                <Link href="/abonnements" className="text-white/70 hover:text-cta">
-                  Abonnements
+                  Tarifs &amp; abonnements
                 </Link>
               </li>
             </ul>

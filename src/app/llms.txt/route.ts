@@ -38,8 +38,7 @@ ${cities.map((c) => `- [${c.label} (${c.departmentCode})](${site.url}/zones/${c.
 
 ## Pages de référence
 - [Nos produits](${site.url}/produits)
-- [Tarifs — coût réel sur 3 ans](${site.url}/tarifs)
-- [Nos abonnements](${site.url}/abonnements)
+- [Tarifs et abonnements — coût réel sur 3 ans](${site.url}/tarifs)
 - [FAQ](${site.url}/faq)
 - [Demander un devis](${site.url}/devis)
 - [Contact](${site.url}/contact)

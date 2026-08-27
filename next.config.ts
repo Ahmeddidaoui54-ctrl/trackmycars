@@ -43,6 +43,14 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
 
+  async redirects() {
+    return [
+      // Fusion : une seule page tarifs, pour ne pas diviser le signal SEO
+      { source: "/abonnements", destination: "/tarifs", permanent: true },
+      { source: "/nos-abonnements", destination: "/tarifs", permanent: true },
+    ];
+  },
+
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

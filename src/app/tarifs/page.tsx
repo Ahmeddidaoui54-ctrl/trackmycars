@@ -6,7 +6,7 @@ import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Prix d'un traceur GPS — le coût réel sur 3 ans, abonnement compris",
+  title: "Tarifs & abonnements — le coût réel d'un traceur GPS sur 3 ans",
   description:
     "Combien coûte vraiment un traceur GPS ? Prix du boîtier, coût de la carte SIM, total sur 3 ans. Pourquoi le « sans abonnement » n'existe pas, et ce que vous payez réellement.",
   keywords: [
@@ -114,6 +114,16 @@ const faq = [
     question: "Que se passe-t-il si j'arrête l'abonnement ?",
     answer:
       "Le boîtier reste votre propriété — vous l'avez acheté, vous ne le louez pas. Seule la transmission des positions s'interrompt. Vous pouvez réactiver un abonnement plus tard sans racheter de matériel, ce qui est utile pour un véhicule saisonnier, un camping-car remisé ou un engin de chantier hors service.",
+  },
+  {
+    question: "Puis-je changer de formule en cours de route ?",
+    answer:
+      "Oui. À l'échéance de votre période en cours, vous choisissez librement de reconduire la même formule ou d'en prendre une autre. Aucune reconduction n'est imposée, et la formule 1 mois se résilie à tout moment sans préavis ni pénalité.",
+  },
+  {
+    question: "L'application mobile est-elle facturée en plus ?",
+    answer:
+      "Non. L'application iOS et Android est entièrement gratuite, sans frais caché ni option payante. L'interface web, accessible depuis n'importe quel navigateur sans installation, est également incluse. Les alertes sont illimitées.",
   },
   {
     question: "Y a-t-il des frais d'installation ?",
@@ -350,9 +360,33 @@ export default function TarifsPage() {
               <p className="mt-1 text-sm font-semibold text-cta">
                 soit {plan.pricePerMonth.toFixed(2).replace(".", ",")} €/mois
               </p>
+              <ul className="mt-6 space-y-2 text-sm">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex gap-2.5">
+                    <span className="text-cta mt-0.5" aria-hidden="true">✔</span>
+                    <span className="text-muted-foreground">{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7">
+                <Link
+                  href="/devis"
+                  className={`btn w-full ${
+                    plan.highlight ? "btn-primary" : "btn-outline text-primary"
+                  }`}
+                >
+                  S&apos;abonner
+                </Link>
+              </div>
             </div>
           ))}
         </div>
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          Les trackers embarquent une carte SIM 4G qui consomme environ 100 Mo par
+          mois. L&apos;abonnement est souscrit par tracker : chaque boîtier a sa
+          propre carte SIM. Au-delà de trois véhicules, nous établissons une
+          proposition adaptée au volume.
+        </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
           <CTA href="/devis">Demander un devis</CTA>
