@@ -1,0 +1,626 @@
+<title>Signal Faible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+:root {
+  --paper:#eef2f5;
+  --surface:#ffffff;
+  --surface-2:#e3e9ee;
+  --ink:#0d1620;
+  --ink-soft:#546471;
+  --ink-faint:#8496a3;
+  --rule:#cfd9e1;
+  --rule-soft:#e0e7ec;
+  --signal:#0a6e9e;
+  --signal-bright:#1f9fe0;
+  --alert:#b8332a;
+  --warn:#9a6000;
+  --good:#12704a;
+  --shadow:0 1px 2px rgba(13,22,32,.05), 0 8px 24px -12px rgba(13,22,32,.18);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:#0a1119;
+    --surface:#111c26;
+    --surface-2:#18262f;
+    --ink:#e4edf3;
+    --ink-soft:#93a6b3;
+    --ink-faint:#66798a;
+    --rule:#23343f;
+    --rule-soft:#1a2833;
+    --signal:#48b6e8;
+    --signal-bright:#68cbf5;
+    --alert:#f0736a;
+    --warn:#e0a340;
+    --good:#48c48f;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:#0a1119;
+  --surface:#111c26;
+  --surface-2:#18262f;
+  --ink:#e4edf3;
+  --ink-soft:#93a6b3;
+  --ink-faint:#66798a;
+  --rule:#23343f;
+  --rule-soft:#1a2833;
+  --signal:#48b6e8;
+  --signal-bright:#68cbf5;
+  --alert:#f0736a;
+  --warn:#e0a340;
+  --good:#48c48f;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:Barlow,"Helvetica Neue",Arial,sans-serif;text-wrap:balance;margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+/* ——— Shell ——— */
+.shell{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:1080px){
+  .shell{grid-template-columns:210px minmax(0,1fr);gap:56px;align-items:start}
+}
+
+/* ——— Masthead ——— */
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead-in{max-width:1180px;margin:0 auto;padding:44px 24px 38px}
+.kicker{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--signal-bright);display:inline-block}
+h1{font-size:clamp(38px,6.2vw,68px);font-weight:700;letter-spacing:-.028em;line-height:1.02;margin:20px 0 0}
+.standfirst{max-width:60ch;margin:18px 0 0;font-size:19px;color:var(--ink-soft)}
+.meta-strip{
+  display:flex;flex-wrap:wrap;gap:0;margin-top:32px;
+  border-top:1px solid var(--rule-soft);
+}
+.meta{padding:16px 28px 0 0;margin-right:28px;border-right:1px solid var(--rule-soft)}
+.meta:last-child{border-right:0}
+.meta dt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin:0}
+.meta dd{font-family:Barlow,sans-serif;font-size:26px;font-weight:600;margin:2px 0 0;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.meta dd small{font-size:13px;font-weight:500;color:var(--ink-soft);letter-spacing:0}
+
+/* ——— Rail ——— */
+.rail{display:none}
+@media(min-width:1080px){
+  .rail{display:block;position:sticky;top:0;padding:48px 0;max-height:100vh;overflow-y:auto}
+}
+.rail h2{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:14px}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+.rail a{
+  display:grid;grid-template-columns:26px 1fr;gap:6px;
+  font-family:Barlow,sans-serif;font-size:13.5px;line-height:1.35;
+  color:var(--ink-soft);text-decoration:none;padding:5px 0;
+  border-left:2px solid transparent;padding-left:10px;margin-left:-12px;
+}
+.rail a:hover{color:var(--signal);border-left-color:var(--signal)}
+.rail a .n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);padding-top:1px}
+
+/* ——— Body ——— */
+main{padding:48px 0 96px;min-width:0}
+section{margin-bottom:64px;scroll-margin-top:24px}
+.sec-head{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;margin-bottom:8px}
+.sec-n{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
+  color:var(--signal);letter-spacing:.04em;
+}
+h2{font-size:clamp(25px,3.2vw,33px);font-weight:700;letter-spacing:-.022em;line-height:1.14}
+h3{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:34px 0 8px}
+p{margin:14px 0;max-width:68ch}
+a{color:var(--signal)}
+strong{font-weight:600}
+ul,ol{max-width:68ch;padding-left:1.15em}
+li{margin:6px 0}
+
+/* ——— Verdict ——— */
+.verdict{
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:4px solid var(--signal);border-radius:2px;
+  padding:28px 30px;margin:28px 0;box-shadow:var(--shadow);
+}
+.verdict .label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin-bottom:10px}
+.verdict .answer{font-family:Barlow,sans-serif;font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.024em;line-height:1.12;margin:0}
+.verdict p{margin:14px 0 0}
+.verdict p:last-child{margin-bottom:0}
+
+/* ——— Tables ——— */
+.tw{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-family:Barlow,sans-serif;font-size:14.5px;min-width:520px}
+caption{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);padding:14px 16px 0}
+th,td{padding:10px 16px;text-align:left;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+  border-bottom:1px solid var(--rule);
+}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace;font-size:13.5px}
+tbody th{font-weight:600}
+tr.hi td,tr.hi th{background:color-mix(in srgb,var(--signal) 7%,transparent)}
+tr.dim td,tr.dim th{color:var(--ink-soft)}
+
+/* ——— Bar viz in tables ——— */
+.bar{display:block;height:5px;border-radius:1px;background:var(--signal-bright);min-width:2px}
+.bar.zero{background:var(--alert);width:3px !important}
+
+/* ——— Keyword block ——— */
+.kw{
+  background:var(--surface-2);border:1px solid var(--rule-soft);border-radius:2px;
+  padding:16px 18px;margin:20px 0;overflow-x:auto;
+}
+.kw ul{list-style:none;margin:0;padding:0;display:grid;gap:3px 24px;max-width:none;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.kw li{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-soft);margin:0;white-space:nowrap}
+.kw li::before{content:"›";color:var(--signal);margin-right:7px}
+
+/* ——— Chips ——— */
+.chip{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:2.5px 7px;border-radius:2px;white-space:nowrap;
+}
+.chip.now{background:color-mix(in srgb,var(--alert) 15%,transparent);color:var(--alert)}
+.chip.wk{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.chip.mo{background:color-mix(in srgb,var(--signal) 14%,transparent);color:var(--signal)}
+.chip.ok{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+
+.yes{color:var(--good);font-weight:600}
+.no{color:var(--alert);font-weight:600}
+.part{color:var(--warn);font-weight:600}
+
+/* ——— Pull ——— */
+.pull{
+  border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);
+  padding:24px 0;margin:34px 0;max-width:68ch;
+}
+.pull p{font-family:Barlow,sans-serif;font-size:clamp(19px,2.5vw,23px);font-weight:500;
+  line-height:1.32;letter-spacing:-.015em;margin:0 0 10px}
+.pull p:last-child{margin-bottom:0}
+.pull .who{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);margin-top:14px}
+
+/* ——— Compare (two-stage positioning) ——— */
+.stages{display:grid;gap:16px;margin:26px 0;max-width:68ch}
+@media(min-width:680px){.stages{grid-template-columns:1fr 1fr}}
+.stage{background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:22px}
+.stage .role{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px}
+.stage .line{font-family:Barlow,sans-serif;font-size:19px;font-weight:600;line-height:1.28;letter-spacing:-.015em}
+.stage p{font-size:15px;color:var(--ink-soft);margin:10px 0 0;max-width:none}
+.stage.attract{border-top:3px solid var(--signal-bright)}
+.stage.convert{border-top:3px solid var(--good)}
+
+/* ——— Fix list ——— */
+.fixes{list-style:none;padding:0;margin:22px 0;max-width:68ch;display:flex;flex-direction:column;gap:0}
+.fixes li{
+  display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+  padding:13px 0;border-bottom:1px solid var(--rule-soft);margin:0;
+}
+.fixes li:first-child{border-top:1px solid var(--rule-soft)}
+.fixes .what{font-family:Barlow,sans-serif;font-size:16px;font-weight:600;line-height:1.3}
+.fixes .why{font-size:14.5px;color:var(--ink-soft);margin-top:2px;display:block}
+
+/* ——— Footer ——— */
+footer{border-top:1px solid var(--rule);background:var(--surface);margin-top:0}
+.footer-in{max-width:1180px;margin:0 auto;padding:36px 24px 56px}
+footer h2{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:12px}
+.srcs{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:Barlow,sans-serif;font-size:13.5px}
+.srcs a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule)}
+.srcs a:hover{color:var(--signal);border-bottom-color:var(--signal)}
+.files{margin-top:26px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-soft);display:flex;flex-direction:column;gap:5px}
+
+a:focus-visible,.rail a:focus-visible{outline:2px solid var(--signal-bright);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <p class="kicker"><span class="dot"></span>Audit de référencement · Track My Cars · Août 2026</p>
+    <h1>Signal faible</h1>
+    <p class="standfirst">Le meilleur argument de vente du catalogue n'est presque jamais tapé dans Google. Ce que 7&nbsp;539&nbsp;requêtes réelles disent du marché, et ce qu'il faut changer.</p>
+    <dl class="meta-strip">
+      <div class="meta"><dt>Requêtes récoltées</dt><dd>7 539</dd></div>
+      <div class="meta"><dt>Après filtrage</dt><dd>2 449</dd></div>
+      <div class="meta"><dt>Confirmées Google + Bing</dt><dd>255</dd></div>
+      <div class="meta"><dt>Concurrents analysés</dt><dd>9</dd></div>
+      <div class="meta"><dt>Pages du site actuel</dt><dd>22 <small>vs 110</small></dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Sommaire">
+    <h2>Sommaire</h2>
+    <ol>
+      <li><a href="#s1"><span class="n">01</span><span>Le coupe-moteur : verdict</span></a></li>
+      <li><a href="#s2"><span class="n">02</span><span>Méthode</span></a></li>
+      <li><a href="#s3"><span class="n">03</span><span>La requête reine</span></a></li>
+      <li><a href="#s4"><span class="n">04</span><span>Le titre de l'accueil</span></a></li>
+      <li><a href="#s5"><span class="n">05</span><span>Le piège du mot « GPS »</span></a></li>
+      <li><a href="#s6"><span class="n">06</span><span>Google ≠ Bing ≠ ChatGPT</span></a></li>
+      <li><a href="#s7"><span class="n">07</span><span>La concurrence technique</span></a></li>
+      <li><a href="#s8"><span class="n">08</span><span>Concurrents non repérés</span></a></li>
+      <li><a href="#s9"><span class="n">09</span><span>Se faire citer par l'IA</span></a></li>
+      <li><a href="#s10"><span class="n">10</span><span>Chiffres à citer</span></a></li>
+      <li><a href="#s11"><span class="n">11</span><span>Erreurs juridiques</span></a></li>
+      <li><a href="#s12"><span class="n">12</span><span>Le local, nuancé</span></a></li>
+      <li><a href="#s13"><span class="n">13</span><span>Plan d'action</span></a></li>
+      <li><a href="#s14"><span class="n">14</span><span>Le positionnement</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="s1">
+      <div class="sec-head"><span class="sec-n">01</span><h2>Le coupe-moteur est-il le bon argument ?</h2></div>
+
+      <div class="verdict">
+        <p class="label">Verdict</p>
+        <p class="answer">Oui pour vendre. Non pour être trouvé.</p>
+        <p>C'est la fonction qui fait choisir Track My Cars plutôt qu'un concurrent, une fois le visiteur arrivé. Ce n'est pas elle qui le fera venir.</p>
+      </div>
+
+      <p>La récolte est sans appel. Sur les vingt clusters analysés, le coupe-moteur est le seul à ne produire <strong>aucune expression confirmée sur les deux moteurs</strong> — et la majorité des vingt-trois remontées portent en réalité sur l'immobilisation administrative par la police, un tout autre sujet.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Volume par cluster — expressions récoltées</caption>
+          <thead><tr><th>Cluster</th><th class="num">Trouvées</th><th class="num">Google + Bing</th><th style="width:26%">Poids</th></tr></thead>
+          <tbody>
+            <tr class="hi"><th>Sans abonnement</th><td class="num">275</td><td class="num">58</td><td><span class="bar" style="width:100%"></span></td></tr>
+            <tr><th>Comparatif / avis</th><td class="num">136</td><td class="num">15</td><td><span class="bar" style="width:26%"></span></td></tr>
+            <tr><th>Moto</th><td class="num">127</td><td class="num">14</td><td><span class="bar" style="width:24%"></span></td></tr>
+            <tr><th>Flotte / entreprise</th><td class="num">117</td><td class="num">8</td><td><span class="bar" style="width:14%"></span></td></tr>
+            <tr><th>Prix / tarif</th><td class="num">69</td><td class="num">9</td><td><span class="bar" style="width:16%"></span></td></tr>
+            <tr><th>Légal / RGPD</th><td class="num">59</td><td class="num">3</td><td><span class="bar" style="width:5%"></span></td></tr>
+            <tr><th>OBD</th><td class="num">80</td><td class="num">3</td><td><span class="bar" style="width:5%"></span></td></tr>
+            <tr><th>Bateau</th><td class="num">21</td><td class="num">4</td><td><span class="bar" style="width:7%"></span></td></tr>
+            <tr><th>BTP / engin</th><td class="num">6</td><td class="num">1</td><td><span class="bar" style="width:2%"></span></td></tr>
+            <tr class="dim"><th>Coupe-moteur</th><td class="num">23</td><td class="num">0</td><td><span class="bar zero"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Le coupe-moteur reste un monopole réel : aucun des neuf concurrents analysés ne le propose. Mais un monopole sur une fonction que personne ne cherche ne remplit pas un site. Il doit vivre sur les fiches produit et dans l'argumentaire commercial — pas porter la promesse d'accueil.</p>
+    </section>
+
+    <section id="s2">
+      <div class="sec-head"><span class="sec-n">02</span><h2>Méthode</h2></div>
+      <p>Trois mille requêtes sondées sur les API d'autocomplétion Google et Bing, marché français, en croisant soixante-dix expressions de départ avec l'alphabet complet et trente modificateurs d'intention. Résultat brut : 7&nbsp;539 expressions.</p>
+      <p>Filtrage en deux passes. La première écarte le bruit hors sujet — traceurs pour animaux, enfants, objets, mais aussi traceurs de dessin et imprimantes grand format. La seconde impose une intention de traçage explicite. Il reste <strong>2&nbsp;449 expressions</strong>, dont 255 confirmées simultanément sur les deux moteurs — le signal le plus fiable dont on dispose sans outil payant.</p>
+      <p>S'y ajoutent l'analyse technique des sitemaps, balises et données structurées de neuf concurrents, et une recherche sur les mécanismes de citation dans les moteurs génératifs.</p>
+    </section>
+
+    <section id="s3">
+      <div class="sec-head"><span class="sec-n">03</span><h2>La requête reine : « sans abonnement »</h2></div>
+      <p>275 variantes, 58 confirmées sur les deux moteurs. C'est de très loin le premier volume du marché, et il n'est pas près.</p>
+
+      <div class="kw">
+        <ul>
+          <li>traceur gps sans abonnement</li>
+          <li>balise gps sans abonnement</li>
+          <li>tracker gps sans abonnement</li>
+          <li>traceur voiture sans abonnement</li>
+          <li>traceur gps moto sans abonnement</li>
+          <li>traceur gps auto sans abonnement</li>
+          <li>traceur gps 4g sans abonnement</li>
+          <li>mini traceur gps sans abonnement</li>
+          <li>traceur gps voiture sans carte sim</li>
+          <li>traceur gps sans abonnement avis</li>
+        </ul>
+      </div>
+
+      <p>Les requêtes associées trahissent l'intention : <span class="mono">…&nbsp;action</span>, <span class="mono">…&nbsp;lidl</span>, <span class="mono">…&nbsp;amazon</span>, <span class="mono">…&nbsp;fnac</span>, <span class="mono">…&nbsp;darty</span>, <span class="mono">…&nbsp;temu</span>. Le public cherche du pas cher en grande distribution.</p>
+
+      <h3>Le problème, et sa sortie</h3>
+      <p>Track My Cars vend <em>avec</em> abonnement. Ignorer cette requête revient à renoncer au premier gisement du marché ; y répondre par un produit qu'on n'a pas serait malhonnête.</p>
+      <p>La sortie est un angle que personne n'occupe, et que les comparateurs reconnaissent déjà à demi-mot : <strong>le « sans abonnement » n'existe pas.</strong> Le coût du réseau est toujours payé — soit dans le prix d'achat, soit tous les mois.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Coût réel sur trois ans</caption>
+          <thead><tr><th>Solution</th><th class="num">Boîtier</th><th class="num">Réseau / an</th><th class="num">Total 3 ans</th><th>Ce qu'on a en plus</th></tr></thead>
+          <tbody>
+            <tr><th>Boîtier Action / Temu</th><td class="num">30 €</td><td class="num">~40 €</td><td class="num">≈ 150 €</td><td>Rien</td></tr>
+            <tr><th>Invoxia</th><td class="num">149 €</td><td class="num">59,85 €</td><td class="num">≈ 269 €</td><td>Application</td></tr>
+            <tr class="hi"><th>Tracker Mini</th><td class="num">79 €</td><td class="num">90 €</td><td class="num">349 €</td><td>Garantie 2 ans, support FR, pose sur site</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Publier ce calcul capte d'un coup le cluster « sans abonnement » et le cluster « prix » — <strong>341 expressions</strong> réunies. Aucun vendeur français ne le fait. C'est la première page à écrire.</p>
+    </section>
+
+    <section id="s4">
+      <div class="sec-head"><span class="sec-n">04</span><h2>Le titre de la page d'accueil</h2></div>
+      <p>Une seule ligne de code, et c'est la plus grosse perte du site.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Balise title — page d'accueil</caption>
+          <thead><tr><th style="width:26%">Site</th><th>Titre</th></tr></thead>
+          <tbody>
+            <tr><th>Quartix</th><td>Traceur GPS de véhicules d'entreprise | Géolocalisation de véhicules</td></tr>
+            <tr><th>Fleetlize</th><td>Traceurs GPS et Gestion de Flotte Entreprise/Particulier - N°1 Europe</td></tr>
+            <tr><th>Traceur-entreprise</th><td>Traceurs GPS professionnels pour voiture et camion</td></tr>
+            <tr><th>Flottech</th><td>Géolocalisation véhicule professionnel | suivi de flotte</td></tr>
+            <tr class="dim"><th>Track My Cars</th><td class="mono">Accueil - Track My Cars</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Zéro mot-clé, sur la balise que Google lit en premier. Le nouveau site corrige déjà le point : <span class="mono">Traceur GPS Véhicules &amp; Flottes — Suivi Temps Réel | PACA</span>.</p>
+    </section>
+
+    <section id="s5">
+      <div class="sec-head"><span class="sec-n">05</span><h2>Le piège du mot « GPS »</h2></div>
+      <p>Découverte contre-intuitive de la récolte : <strong>« GPS » seul désigne la navigation</strong>, pas le traçage. Les suggestions sur <span class="mono">gps voiture</span> remontent massivement <span class="mono">gps voiture gratuit</span>, <span class="mono">gps voiture waze</span>, <span class="mono">application gps</span> — des gens qui cherchent un itinéraire, pas un antivol.</p>
+      <p>Sur 7&nbsp;539 expressions récoltées, <strong>5&nbsp;090 ont été écartées</strong> pour cette raison. Deux tiers du volume apparent du marché n'en font pas partie.</p>
+      <div class="pull">
+        <p>Cibler <span class="mono">traceur GPS</span>, <span class="mono">tracker GPS</span>, <span class="mono">balise GPS</span>, <span class="mono">antivol GPS</span>, <span class="mono">géolocalisation</span>.</p>
+        <p>Jamais <span class="mono">GPS voiture</span> seul.</p>
+        <p class="who">Règle à appliquer sur chaque page</p>
+      </div>
+      <p>Le trafic serait volumineux, et sans la moindre valeur commerciale.</p>
+    </section>
+
+    <section id="s6">
+      <div class="sec-head"><span class="sec-n">06</span><h2>Google et Bing ne portent pas les mêmes requêtes</h2></div>
+      <p>C'est le résultat le plus exploitable de la comparaison des deux sources — et il valide l'intuition sur ChatGPT.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Nature des suggestions par moteur</caption>
+          <thead><tr><th></th><th>Google</th><th>Bing</th></tr></thead>
+          <tbody>
+            <tr><th>Expressions récoltées</th><td class="num">6 119</td><td class="num">2 795</td></tr>
+            <tr><th>Nature dominante</th><td>Requêtes <strong>produit</strong><br><span class="mono" style="font-size:12px">traceur gps tk905, traceur gps fnac</span></td><td>Requêtes <strong>question</strong><br><span class="mono" style="font-size:12px">comment fonctionne un traceur gps</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Bing renvoie massivement les formulations en « comment », « pourquoi », « quel » — Google beaucoup moins. Or <strong>ChatGPT search s'appuie sur l'index Bing</strong>, et Copilot en dépend directement.</p>
+
+      <div class="kw">
+        <ul>
+          <li>comment fonctionne un traceur gps</li>
+          <li>comment choisir un traceur gps</li>
+          <li>comment installer un traceur gps</li>
+          <li>comment géolocaliser un véhicule</li>
+          <li>comment fonctionne un traceur sans abonnement</li>
+          <li>comment localiser un véhicule</li>
+          <li>comment détecter un traceur gps</li>
+          <li>comment détecter un traceur sur une voiture</li>
+          <li>comment activer un traceur gps</li>
+          <li>comment fonctionne une balise gps</li>
+        </ul>
+      </div>
+
+      <p>Chaque page doit reprendre ces formulations <em>mot pour mot</em>, suivies d'une réponse directe en un paragraphe court et autonome. Une IA extrait des blocs, pas des pages.</p>
+      <p>À noter : <span class="mono">comment détecter un traceur gps</span> est une requête de volume — quelqu'un qui soupçonne un mouchard sur sa propre voiture. Un article honnête sur le sujet attire du trafic, installe l'autorité, et permet de traiter frontalement la question du micro embarqué.</p>
+    </section>
+
+    <section id="s7">
+      <div class="sec-head"><span class="sec-n">07</span><h2>Ce que la concurrence fait techniquement</h2></div>
+
+      <div class="tw">
+        <table>
+          <caption>Données structurées et signaux</caption>
+          <thead><tr><th>Site</th><th>JSON-LD</th><th>Point notable</th></tr></thead>
+          <tbody>
+            <tr class="hi"><th>Fleetlize</th><td>AggregateRating, FAQPage, MerchantReturnPolicy, Brand</td><td>Le mieux équipé. Compteurs <strong>remplis</strong> : 300 voitures retrouvées, 2 000 clients, 165 pays</td></tr>
+            <tr><th>Traxelio</th><td>Service, FAQPage, Question/Answer, Organization</td><td>Pages villes + comparatif « sans suivi / avec »</td></tr>
+            <tr><th>Geotraceur</th><td>WebSite, WebPage, Breadcrumb</td><td>Catalogue produit, PC de surveillance 24/7</td></tr>
+            <tr><th>Quartix</th><td>Breadcrumb seulement</td><td>Forte autorité, faible technique</td></tr>
+            <tr><th>Flottech</th><td>Organization, PostalAddress</td><td>Adresse postale exposée</td></tr>
+            <tr class="dim"><th>Suivideflotte</th><td>aucun</td><td>—</td></tr>
+            <tr class="dim"><th>Track My Cars</th><td>Organization, WebSite, WebPage</td><td>Ni Product, ni FAQPage, ni LocalBusiness</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Deux enseignements. D'abord, <strong>Fleetlize affiche des compteurs remplis</strong> là où Track My Cars affiche « YEARS OF EXPERIENCE » et « Awards &amp; Recognitions » vides — comparaison directement défavorable, sur le même marché.</p>
+      <p>Ensuite, <strong>aucun concurrent n'a de balisage <span class="mono">Product</span> avec prix.</strong> Track My Cars vend des produits à prix fixe : c'est la porte d'entrée vers les résultats enrichis avec prix et disponibilité, et elle est grande ouverte.</p>
+      <p>Le nouveau site implémente Organization, WebSite, LocalBusiness, Product&nbsp;+&nbsp;Offer&nbsp;+&nbsp;MerchantReturnPolicy, Service, FAQPage, BreadcrumbList, ItemList et HowTo.</p>
+
+      <h3>Volumétrie</h3>
+      <p>Relevé des sitemaps du site actuel : 1 article, 10 pages, 9 produits, 2 catégories. <strong>22 URL indexables.</strong> Le nouveau site en compte 110 — et chacune répond à une requête identifiée dans la récolte.</p>
+      <p>Trois anomalies à corriger au passage : la page d'exemple <span class="mono">sample-page</span> de WordPress est toujours en ligne et dans le sitemap ; <span class="mono">cart</span>, <span class="mono">checkout</span> et <span class="mono">my-account</span> y figurent aussi alors qu'elles ne doivent jamais être indexées.</p>
+    </section>
+
+    <section id="s8">
+      <div class="sec-head"><span class="sec-n">08</span><h2>Des concurrents que la première analyse avait manqués</h2></div>
+      <p>La récolte fait apparaître des acteurs absents du premier audit, parce qu'ils sortent sur les requêtes produit et non sur les requêtes flotte.</p>
+
+      <h3>Distribution</h3>
+      <p>Norauto — confirmé sur Google <em>et</em> Bing —, Action, Lidl, Fnac, Darty, Amazon, Temu.</p>
+
+      <h3>Marques citées nommément</h3>
+      <p>TK905, Winnes, GF-07, Invoxia, Beepings ZEN L, GeoRide (moto), Coyote Secure, Comfexia, Kippy, Yonis, Dimova, Helix.</p>
+
+      <h3>Éditeurs qui captent le comparatif</h3>
+      <p><span class="mono">trakmy.fr</span>, <span class="mono">meilleurs-traceurs-gps.fr</span>, <span class="mono">trackeo.fr</span>, <span class="mono">meilleurs.fr</span>. Ce sont eux qui occupent « meilleur traceur GPS » et « comparatif » — pas les vendeurs.</p>
+
+      <p>Là se trouve une ouverture : les requêtes de marque sont peu disputées par les vendeurs. Une page « Track My Cars ou TK905 : ce qui change vraiment » capte un visiteur déjà en phase d'achat.</p>
+    </section>
+
+    <section id="s9">
+      <div class="sec-head"><span class="sec-n">09</span><h2>Se faire citer par ChatGPT</h2></div>
+      <p>L'intuition est juste : Bing compte parce que ChatGPT s'appuie sur son index. Voici ce qui augmente réellement la probabilité d'être cité dans une réponse d'IA.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Effet mesuré sur le taux de citation</caption>
+          <thead><tr><th>Élément de contenu</th><th class="num">Effet</th><th style="width:30%">Poids</th></tr></thead>
+          <tbody>
+            <tr><th>Citations et guillemets</th><td class="num">+41 %</td><td><span class="bar" style="width:100%"></span></td></tr>
+            <tr><th>Statistiques chiffrées</th><td class="num">+32 %</td><td><span class="bar" style="width:78%"></span></td></tr>
+            <tr><th>Sources citées en ligne</th><td class="num">+30 %</td><td><span class="bar" style="width:73%"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>À l'inverse, <span class="mono">llms.txt</span> ne sert à rien pour l'instant : sur environ 38 000 domaines qui en publient un valide, <strong>97 % n'ont reçu aucune requête</strong> sur ce fichier, et aucune corrélation avec le taux de citation n'a été établie. Il a été ajouté au site parce que c'est gratuit — pas parce que c'est prioritaire.</p>
+
+      <ul>
+        <li><strong>Soumettre le sitemap à Bing Webmaster Tools</strong>, pas seulement à Google Search Console. C'est la condition d'entrée dans ChatGPT.</li>
+        <li>Structurer chaque réponse en un paragraphe court et autonome, placé juste sous sa question.</li>
+        <li>Injecter des statistiques sourcées — la section suivante en fournit.</li>
+        <li>Nommer un auteur et dater les pages.</li>
+        <li>Baliser en <span class="mono">FAQPage</span> et <span class="mono">Question/Answer</span> — déjà en place.</li>
+      </ul>
+    </section>
+
+    <section id="s10">
+      <div class="sec-head"><span class="sec-n">10</span><h2>Les chiffres à citer</h2></div>
+      <p>Vérifiables, sourcés, et directement utiles : ils augmentent la citation par les IA d'environ un tiers et crédibilisent le discours commercial.</p>
+
+      <h3>Vol de véhicules — 2025</h3>
+      <ul>
+        <li><strong>125 200</strong> vols de véhicules en France (ministère de l'Intérieur), soit un toutes les quatre minutes</li>
+        <li><strong>64 088</strong> vols déclarés aux assurances, en baisse de 9 % sur un an</li>
+        <li><strong>40 %</strong> des voitures volées sont retrouvées — un tiers en moins d'une semaine</li>
+        <li>Coût moyen d'un sinistre vol : <strong>+138 %</strong> en dix ans</li>
+      </ul>
+
+      <h3>Vol de matériel de chantier — 2025</h3>
+      <ul>
+        <li>Vols d'engins <strong>en hausse de 14 %</strong>, à contre-courant de la baisse générale</li>
+        <li><strong>68 %</strong> des professionnels du BTP confrontés au vol, contre 50 % en 2022</li>
+        <li>Perte moyenne par entreprise : <strong>31 000 €</strong></li>
+        <li>Plus de <strong>400 millions d'euros</strong> de pertes annuelles pour le secteur</li>
+      </ul>
+
+      <p>Ce second bloc est le plus décisif : le BTP est le secteur où la douleur est la plus forte et la concurrence SEO la plus faible — six expressions récoltées, contre 275 pour « sans abonnement ».</p>
+    </section>
+
+    <section id="s11">
+      <div class="sec-head"><span class="sec-n">11</span><h2>Erreurs juridiques à corriger</h2></div>
+      <p>La vérification du cadre CNIL révèle plusieurs approximations dans ce qui avait été rédigé. Sur un sujet où l'on cherche justement à construire de l'autorité, une page fausse détruit l'effet recherché.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Ce qui était écrit / ce que dit la CNIL</caption>
+          <thead><tr><th>Point</th><th>Écrit</th><th>Réel</th></tr></thead>
+          <tbody>
+            <tr><th>Conservation des données</th><td class="dim">3 à 12 mois</td><td><strong>2 mois</strong> en principe</td></tr>
+            <tr><th>Trajets domicile-travail</th><td class="dim">non traité</td><td><strong>Jamais traçables</strong></td></tr>
+            <tr><th>Consultation du CSE</th><td>mentionnée</td><td>Obligatoire — art. <span class="mono">L.2312-38</span></td></tr>
+            <tr><th>Information du salarié</th><td>mentionnée</td><td>Obligatoire — art. <span class="mono">L.1222-4</span></td></tr>
+            <tr><th>Déclaration CNIL</th><td class="dim">« déclarer au registre »</td><td><strong>Aucune déclaration préalable</strong> ; registre + DPIA le cas échéant</td></tr>
+            <tr><th>Géolocalisation permanente</th><td class="dim">non traité</td><td><strong>Interdite</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Finalités admises : facturation d'une prestation, sécurité des biens et des personnes, optimisation des tournées, et suivi du temps de travail <em>à titre subsidiaire uniquement</em>. Ces corrections ont été appliquées au code.</p>
+    </section>
+
+    <section id="s12">
+      <div class="sec-head"><span class="sec-n">12</span><h2>Le local, avec une nuance</h2></div>
+      <p>La récolte ne remonte que <strong>six expressions locales</strong> — <span class="mono">traceur gps marseille</span>, <span class="mono">traceur gps aix en provence</span>, <span class="mono">magasin traceur gps marseille</span> et trois variantes.</p>
+      <p>Il ne faut pas en conclure que le local est sans intérêt. L'autocomplétion sous-représente structurellement ces requêtes : quelqu'un à Marseille qui tape <span class="mono">traceur gps</span> reçoit déjà des résultats marseillais sans écrire le nom de sa ville.</p>
+      <p>Ce qu'il faut en retenir : les 66 pages secteur × ville gardent leur valeur comme <strong>filet de longue traîne</strong>, pas comme moteur principal. Le vrai levier local reste la fiche Google Business Profile et les avis. Et <span class="mono">magasin traceur gps marseille</span> révèle une intention de retrait physique — s'il existe un point d'accueil, il faut l'exposer.</p>
+    </section>
+
+    <section id="s13">
+      <div class="sec-head"><span class="sec-n">13</span><h2>Plan d'action</h2></div>
+
+      <h3><span class="chip now">Immédiat</span> &nbsp;Avant même Search Console</h3>
+      <ol class="fixes">
+        <li><span class="chip now">1</span><span><span class="what">Corriger le title « Accueil - Track My Cars »</span><span class="why">La perte la plus coûteuse du site, pour une ligne de code</span></span></li>
+        <li><span class="chip now">2</span><span><span class="what">Trancher la contradiction carte SIM / abonnement</span><span class="why">La FAQ annonce « aucun frais mensuel », la page abonnements facture 15 €/mois. Le visiteur ne peut pas savoir ce qu'il achète</span></span></li>
+        <li><span class="chip now">3</span><span><span class="what">Nettoyer le sitemap</span><span class="why">Supprimer <span class="mono">sample-page</span>, sortir cart, checkout et my-account</span></span></li>
+        <li><span class="chip now">4</span><span><span class="what">Retirer le mot de passe « 123456 » de la FAQ</span><span class="why">Publié en clair sur le site actuel</span></span></li>
+        <li><span class="chip now">5</span><span><span class="what">Remplir ou supprimer les compteurs vides</span><span class="why">Fleetlize affiche les siens sur le même marché</span></span></li>
+      </ol>
+
+      <h3><span class="chip wk">Semaine 1</span> &nbsp;Inscription aux outils</h3>
+      <ol class="fixes">
+        <li><span class="chip wk">6</span><span><span class="what">Google Search Console + sitemap</span><span class="why">Charger d'abord les 255 expressions confirmées</span></span></li>
+        <li><span class="chip wk">7</span><span><span class="what">Bing Webmaster Tools + sitemap</span><span class="why">C'est l'accès à ChatGPT search — souvent oublié</span></span></li>
+        <li><span class="chip wk">8</span><span><span class="what">Google Business Profile</span><span class="why">Bloqué tant qu'il n'y a pas d'adresse physique. Sans fiche, aucune page ville n'entrera dans le pack local</span></span></li>
+      </ol>
+
+      <h3><span class="chip mo">Mois 1</span> &nbsp;Les pages qui manquent</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Page à créer</th><th>Cluster capté</th><th class="num">Expressions</th></tr></thead>
+          <tbody>
+            <tr class="hi"><th>/tarifs — le vrai coût sur 3 ans</th><td>sans abonnement + prix</td><td class="num">341</td></tr>
+            <tr><th>/comparatif — face aux marques</th><td>comparatif + avis</td><td class="num">128</td></tr>
+            <tr><th>/guide-legal — CNIL et RGPD</th><td>légal</td><td class="num">46</td></tr>
+            <tr><th>/blog/vehicule-vole-que-faire</th><td>vol / récupération</td><td class="num">34</td></tr>
+            <tr><th>/blog/detecter-un-traceur-gps</th><td>détection</td><td class="num">8 <small>+ Bing</small></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3><span class="chip ok">Mois 2–3</span> &nbsp;Autorité</h3>
+      <ol class="fixes">
+        <li><span class="chip ok">14</span><span><span class="what">Collecter 20 avis Google</span><span class="why">Premier facteur du pack local</span></span></li>
+        <li><span class="chip ok">15</span><span><span class="what">Cas clients chiffrés, par ville</span><span class="why">« 14 fourgons équipés pour un plombier à Toulon »</span></span></li>
+        <li><span class="chip ok">16</span><span><span class="what">Modèle de note d'information salariés</span><span class="why">Capture de leads sur le cluster juridique</span></span></li>
+        <li><span class="chip ok">17</span><span><span class="what">Démarcher un assureur pour l'attestation</span><span class="why">Seul manque concurrent rentable à combler (Geotraceur l'a)</span></span></li>
+      </ol>
+    </section>
+
+    <section id="s14">
+      <div class="sec-head"><span class="sec-n">14</span><h2>Le positionnement qui ressort de la donnée</h2></div>
+      <p>Le premier audit proposait : « les concurrents vous disent où est votre véhicule, vous pouvez l'arrêter ». La récolte montre que cette promesse ne correspond presque à aucune recherche réelle.</p>
+      <p>Le marché cherche, dans cet ordre : un traceur <strong>sans abonnement</strong>, son <strong>prix</strong>, le <strong>meilleur modèle</strong>, sa <strong>légalité</strong>, puis le secteur d'usage. D'où un positionnement à deux étages.</p>
+
+      <div class="stages">
+        <div class="stage attract">
+          <p class="role">Pour attirer</p>
+          <p class="line">« Ce que coûte vraiment un traceur GPS, abonnement compris. »</p>
+          <p>Le seul acteur du marché qui publie le calcul complet. C'est ce qui amène le trafic.</p>
+        </div>
+        <div class="stage convert">
+          <p class="role">Pour convertir</p>
+          <p class="line">« Et le seul dont vous pouvez couper le moteur à distance. »</p>
+          <p>Aucun des neuf concurrents ne le propose. C'est ce qui gagne la vente.</p>
+        </div>
+      </div>
+
+      <p>Les inverser serait l'erreur : mettre le coupe-moteur en promesse d'accueil, c'est bâtir la façade sur une fonction que personne ne tape.</p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-in">
+    <h2>Sources</h2>
+    <div class="srcs">
+      <a href="https://www.cnil.fr/fr/cnil-direct/question/geolocalisation-des-vehicules-professionnels-des-employes-que-faire">CNIL — géolocalisation des véhicules professionnels</a>
+      <a href="https://www.moncoyote.com/blog/vol-tracking/observatoire-des-vols-et-de-la-recuperation-apres-vol-coyote-secure-2026/">Observatoire Coyote Secure 2026</a>
+      <a href="https://silexo.fr/article/182/geolocalisation-des-vehicules-professionnels-cadre-legal-limites-et-risques-pour-l-entreprise-rgpd-droit-du-travail">Silexo — cadre légal RGPD</a>
+      <a href="https://trakmy.fr/traceur-gps-engins-chantier/">TRAKmy — vol de matériel BTP</a>
+      <a href="https://aisearch.similarweb.com/blog/what-is-geo/">Similarweb — guide GEO 2026</a>
+      <a href="https://www.yotpo.com/blog/chatgpt-seo-geo-tips/">Yotpo — être cité par ChatGPT</a>
+    </div>
+    <div class="files">
+      <span>docs/mots-cles.csv — 2 332 expressions, page cible et intention</span>
+      <span>docs/mots-cles-prioritaires.csv — 255 confirmées Google + Bing</span>
+      <span>docs/audit-croise.md — comparaison des prestations</span>
+      <span>docs/audit-seo-complet.md — version longue</span>
+    </div>
+  </div>
+</footer>
