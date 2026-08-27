@@ -6,7 +6,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Conditions générales de vente",
   description:
-    "CGV Track My Cars : commande, prix, livraison, droit de rétractation de 14 jours, garantie 3 ans, abonnement sans engagement et résiliation.",
+    "CGV Track My Cars : commande, prix, livraison, droit de rétractation de 14 jours, garantie 2 ans, abonnement sans engagement et résiliation.",
   alternates: { canonical: "/cgv" },
   robots: { index: false, follow: true },
 };
@@ -39,7 +39,7 @@ const articles = [
   },
   {
     title: "Garantie",
-    body: "Le matériel est garanti trois ans, pièces et main-d'œuvre, contre tout défaut de fabrication dans des conditions normales d'usage. Sont exclus les dommages résultant d'un accident, d'une immersion hors spécification, d'une modification ou d'une intervention par un tiers non habilité. Les garanties légales de conformité et des vices cachés s'appliquent en tout état de cause.",
+    body: "Le matériel est garanti deux ans, pièces et main-d'œuvre, contre tout défaut de fabrication dans des conditions normales d'usage. Sont exclus les dommages résultant d'un accident, d'une immersion hors spécification, d'une modification ou d'une intervention par un tiers non habilité. Les garanties légales de conformité et des vices cachés s'appliquent en tout état de cause.",
   },
   {
     title: "Abonnement et résiliation",

@@ -69,7 +69,7 @@ const service = [
       "48 à 72 heures ouvrées pour les modèles sans installation, partout en France, sans frais de port. Pour une installation câblée par nos techniciens en région PACA, comptez environ une semaine pour la prise de rendez-vous.",
   },
   {
-    question: "Que couvre la garantie de 3 ans ?",
+    question: "Que couvre la garantie de 2 ans ?",
     answer:
       "Les pièces et la main-d'œuvre en cas de défaillance du matériel dans des conditions normales d'usage. Les dommages liés à un accident, une immersion prolongée hors spécification ou une intervention par un tiers non habilité ne sont pas couverts. Le remplacement se fait par échange standard.",
   },

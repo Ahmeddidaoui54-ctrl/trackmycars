@@ -8,7 +8,7 @@ import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Nos trackers GPS — Aimanté, OBD, Coupe-moteur, Mini",
   description:
-    "Quatre traceurs GPS professionnels de 79 € à 199 € : aimanté 30 jours d'autonomie, OBD sans installation, coupe-moteur antivol, mini discret. Garantie 3 ans.",
+    "Cinq traceurs GPS professionnels de 79 € à 199 € : aimanté 30 jours d'autonomie, OBD sans installation, coupe-moteur antivol, mini discret. Garantie 2 ans.",
   alternates: { canonical: "/produits" },
 };
 
@@ -38,11 +38,11 @@ export default function ProduitsPage() {
       <Section className="pt-6!">
         <SectionHead
           eyebrow="Catalogue"
-          title="Quatre boîtiers, quatre façons de couvrir un risque"
+          title="Cinq boîtiers, cinq façons de couvrir un risque"
           lead="Tous nos trackers partagent la même application, les mêmes alertes et la même couverture réseau sur plus de 150 pays. Ils diffèrent par le mode d'alimentation, la discrétion et la capacité d'immobilisation à distance."
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {products.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
@@ -59,7 +59,7 @@ export default function ProduitsPage() {
         <div className="mt-10 overflow-x-auto">
           <table className="w-full min-w-3xl border-collapse text-sm">
             <caption className="sr-only">
-              Comparatif des quatre modèles de traceurs GPS
+              Comparatif des cinq modèles de traceurs GPS
             </caption>
             <thead>
               <tr className="border-b-2 border-primary">
@@ -134,23 +134,25 @@ export default function ProduitsPage() {
         <SectionHead
           eyebrow="Abonnement"
           title="Le boîtier s'achète, le service s'abonne"
-          lead="Le tracker est un achat unique dont vous restez propriétaire. L'abonnement couvre la carte SIM multi-opérateurs, la plateforme et les alertes. Résiliable à tout moment."
+          lead="Le tracker est un achat unique dont vous restez propriétaire. L'abonnement couvre la carte SIM 4G et l'accès à la plateforme. La formule 1 mois est sans engagement."
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.slug}
               className={`border rounded-lg p-6 ${
-                plan.highlight ? "border-accent border-2" : "border-border"
+                plan.highlight ? "border-cta border-2" : "border-border/50"
               }`}
             >
               <h3 className="text-lg font-bold">{plan.name}</h3>
               <p className="mt-1 text-xs text-muted-foreground">{plan.tagline}</p>
               <p className="mt-4">
-                <span className="stat-value text-2xl">
-                  {plan.pricePerMonth.toFixed(2).replace(".", ",")} €
+                <span className="text-2xl font-bold text-primary">
+                  {plan.totalPrice} €
                 </span>
-                <span className="text-xs text-muted-foreground"> /mois/véhicule</span>
+                <span className="text-xs text-muted-foreground">
+                  {" "}soit {plan.pricePerMonth.toFixed(2).replace(".", ",")} €/mois
+                </span>
               </p>
             </div>
           ))}

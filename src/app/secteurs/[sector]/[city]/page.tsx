@@ -231,7 +231,7 @@ export default async function SectorCityPage({
                       {Math.min(...recommended.map((p) => p.price))} €
                     </span>{" "}
                     <span className="text-xs text-muted-foreground">
-                      + 9,90 €/mois
+                      + 7,50 €/mois
                     </span>
                   </dd>
                 </div>
@@ -377,7 +377,7 @@ export default async function SectorCityPage({
             Équipez {sector.possessive} {city.inCity}
           </h2>
           <p className="mt-5 text-primary-foreground/80 leading-relaxed">
-            Intervention sur site en {city.department}, matériel garanti 3 ans,
+            Intervention sur site en {city.department}, matériel garanti 2 ans,
             abonnement sans engagement. Dites-nous ce que vous avez à protéger.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

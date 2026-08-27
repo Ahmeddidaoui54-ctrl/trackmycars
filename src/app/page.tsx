@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: "Traceur GPS Véhicules & Flottes — Suivi Temps Réel | PACA",
   description:
-    "Trackers GPS professionnels pour voitures, flottes, poids lourds et engins. Suivi temps réel, antivol, coupe-moteur. Installation Marseille, Nice, Toulon, Aix. Sans engagement, garantie 3 ans.",
+    "Trackers GPS professionnels pour voitures, flottes, poids lourds et engins. Suivi temps réel, antivol, coupe-moteur. Installation Marseille, Nice, Toulon, Aix. Sans engagement, garantie 2 ans.",
   alternates: { canonical: "/" },
 };
 
@@ -138,7 +138,7 @@ const faq = [
   {
     question: "Combien coûte la solution complète ?",
     answer:
-      "Le boîtier va de 79 € à 199 € selon le modèle, en achat unique. L'abonnement démarre à 9,90 € par mois et par véhicule, et descend à 5,90 € au-delà de vingt véhicules. Livraison et application incluses.",
+      "Le boîtier va de 79 € à 199 € selon le modèle, en achat unique — vous en restez propriétaire. L'abonnement à la connectivité est de 15 € pour un mois sans engagement, 60 € pour six mois (10 €/mois) ou 90 € pour douze mois (7,50 €/mois). Application mobile et interface web incluses.",
   },
 ];
 

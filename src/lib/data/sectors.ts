@@ -29,7 +29,7 @@ export const sectors: Sector[] = [
     h1: "Traceur GPS pour voiture — localisez votre véhicule 24h/24",
     metaTitle: "Traceur GPS Voiture — Antivol & Suivi Temps Réel",
     metaDescription:
-      "Tracker GPS pour voiture : localisation temps réel, alerte de déplacement, coupe-moteur à distance. Installation en France, sans engagement, garantie 3 ans.",
+      "Tracker GPS pour voiture : localisation temps réel, alerte de déplacement, coupe-moteur à distance. Installation en France, sans engagement, garantie 2 ans.",
     intro:
       "Un véhicule est volé toutes les quatre minutes en France, et moins d'un sur deux est retrouvé. Un traceur GPS change radicalement cette statistique : dès l'alerte de déplacement, vous connaissez la position exacte de votre voiture et pouvez transmettre les coordonnées aux forces de l'ordre en temps réel. Sur les modèles coupe-moteur, vous immobilisez le véhicule à son prochain arrêt.",
     painPoints: [
@@ -84,7 +84,7 @@ export const sectors: Sector[] = [
       {
         question: "Combien coûte le suivi GPS d'une voiture par mois ?",
         answer:
-          "Le boîtier est un achat unique à partir de 79 €. L'abonnement à la plateforme et à la carte SIM démarre à 9,90 € par mois sans engagement, incluant l'application, les alertes illimitées et l'historique.",
+          "Le boîtier est un achat unique à partir de 79 €. L'abonnement à la connectivité est de 15 € pour un mois sans engagement, et descend à 7,50 € par mois sur la formule 12 mois. L'application mobile et l'interface web sont incluses.",
       },
     ],
   },
@@ -96,7 +96,7 @@ export const sectors: Sector[] = [
     h1: "Traceur GPS moto et scooter — le vol le plus fréquent, la parade la plus efficace",
     metaTitle: "Traceur GPS Moto & Scooter — Antivol Discret",
     metaDescription:
-      "Tracker GPS moto : boîtier miniature invisible, alerte de mouvement, suivi temps réel. Protégez votre deux-roues contre le vol. Sans engagement, garantie 3 ans.",
+      "Tracker GPS moto : boîtier miniature invisible, alerte de mouvement, suivi temps réel. Protégez votre deux-roues contre le vol. Sans engagement, garantie 2 ans.",
     intro:
       "Les deux-roues représentent la catégorie de véhicules la plus volée rapportée au parc en circulation. Une moto se charge en quelques secondes dans un utilitaire, antivol U compris. Le traceur GPS est le seul dispositif qui reste utile après le vol : il vous donne la position du garage ou du container où la machine a été déposée.",
     painPoints: [
@@ -430,7 +430,7 @@ export const sectors: Sector[] = [
     h1: "Traceur GPS pour engins de chantier et matériel BTP",
     metaTitle: "Traceur GPS Engin de Chantier — Antivol BTP",
     metaDescription:
-      "GPS pour mini-pelle, nacelle, compacteur et matériel BTP : antivol autonome sans câblage, alerte de déplacement, suivi des heures. Garantie 3 ans.",
+      "GPS pour mini-pelle, nacelle, compacteur et matériel BTP : antivol autonome sans câblage, alerte de déplacement, suivi des heures. Garantie 2 ans.",
     intro:
       "Le matériel de chantier est volé parce qu'il est facile à charger, difficile à identifier et impossible à retracer sans dispositif. Une mini-pelle disparue un vendredi soir est démontée ou exportée avant le lundi. Le traceur aimanté, sans câblage ni alimentation, se pose sur n'importe quel engin en trente secondes.",
     painPoints: [
@@ -694,7 +694,7 @@ export const sectors: Sector[] = [
     h1: "Traceur GPS camping-car — protégez votre véhicule de loisirs",
     metaTitle: "Traceur GPS Camping-car — Antivol & Suivi Europe",
     metaDescription:
-      "Tracker GPS camping-car : antivol pendant le remisage hivernal, suivi en voyage, couverture Europe et 150 pays sans surcoût. Garantie 3 ans.",
+      "Tracker GPS camping-car : antivol pendant le remisage hivernal, suivi en voyage, couverture Europe et 150 pays sans surcoût. Garantie 2 ans.",
     intro:
       "Un camping-car passe l'essentiel de l'année immobilisé sur une aire de remisage ou un terrain, souvent loin du domicile de son propriétaire. C'est exactement le profil de bien que ciblent les réseaux organisés : forte valeur, longue période sans surveillance, revente à l'étranger. Le traceur GPS couvre le remisage comme le voyage.",
     painPoints: [

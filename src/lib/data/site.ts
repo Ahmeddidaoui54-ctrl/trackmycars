@@ -19,7 +19,7 @@ export const site = {
   guarantees: [
     { label: "Couverture mondiale", detail: "Plus de 150 pays, sans frais de roaming" },
     { label: "Sans engagement", detail: "Abonnement résiliable à tout moment" },
-    { label: "Garantie 3 ans", detail: "Matériel garanti pièces et main-d'œuvre" },
+    { label: "Garantie 2 ans", detail: "Matériel garanti pièces et main-d'œuvre" },
     { label: "Support français", detail: "Équipe basée en France, joignable directement" },
   ],
 } as const;
@@ -27,64 +27,69 @@ export const site = {
 export interface Plan {
   slug: string;
   name: string;
+  /** Durée d'engagement en mois */
+  months: number;
+  /** Prix total facturé pour la période */
+  totalPrice: number;
+  /** Prix ramené au mois */
   pricePerMonth: number;
-  minVehicles: number;
-  maxVehicles: number | null;
   tagline: string;
   features: string[];
   highlight?: boolean;
 }
 
+/**
+ * Tarifs repris de trackmycars.fr/nos-abonnements.
+ * Les trackers embarquent une carte SIM 4G consommant ~100 Mo/mois ;
+ * l'abonnement couvre cette connectivité et l'accès à la plateforme.
+ */
 export const plans: Plan[] = [
   {
-    slug: "essentiel",
-    name: "Essentiel",
-    pricePerMonth: 9.9,
-    minVehicles: 1,
-    maxVehicles: 2,
-    tagline: "Pour un ou deux véhicules personnels",
+    slug: "1-mois",
+    name: "1 mois",
+    months: 1,
+    totalPrice: 15,
+    pricePerMonth: 15,
+    tagline: "Sans engagement, résiliable chaque mois",
     features: [
-      "Carte SIM multi-opérateurs incluse",
+      "Carte SIM 4G incluse (~100 Mo/mois)",
       "Suivi temps réel illimité",
-      "Historique 3 mois",
       "Alertes de mouvement et de zone",
       "Application iOS & Android",
-      "Support par email et WhatsApp",
+      "Interface web sans installation",
+      "Support français",
     ],
   },
   {
-    slug: "pro",
-    name: "Pro",
-    pricePerMonth: 7.9,
-    minVehicles: 3,
-    maxVehicles: 20,
-    tagline: "Pour les artisans, TPE et petites flottes",
+    slug: "12-mois",
+    name: "12 mois",
+    months: 12,
+    totalPrice: 90,
+    pricePerMonth: 7.5,
+    tagline: "La formule la plus économique",
     highlight: true,
     features: [
-      "Tout le plan Essentiel",
-      "Historique 12 mois",
-      "Rapports d'activité exportables",
-      "Gestion multi-utilisateurs",
-      "Geofencing illimité",
-      "Support téléphonique prioritaire",
-      "Documentation RGPD fournie",
+      "Tout le plan 1 mois",
+      "50 % d'économie sur le tarif mensuel",
+      "Historique d'itinéraire complet",
+      "Alertes illimitées",
+      "Support prioritaire",
+      "Idéal flotte et usage professionnel",
     ],
   },
   {
-    slug: "flotte",
-    name: "Flotte",
-    pricePerMonth: 5.9,
-    minVehicles: 21,
-    maxVehicles: null,
-    tagline: "Pour les flottes de plus de 20 véhicules",
+    slug: "6-mois",
+    name: "6 mois",
+    months: 6,
+    totalPrice: 60,
+    pricePerMonth: 10,
+    tagline: "Le bon compromis durée / prix",
     features: [
-      "Tout le plan Pro",
-      "Historique illimité",
-      "Accès API pour intégration",
-      "Regroupement par site ou agence",
-      "Interlocuteur dédié",
-      "Installation sur site incluse",
-      "Formation des équipes",
+      "Tout le plan 1 mois",
+      "33 % d'économie sur le tarif mensuel",
+      "Historique d'itinéraire complet",
+      "Alertes illimitées",
+      "Support français",
     ],
   },
 ];

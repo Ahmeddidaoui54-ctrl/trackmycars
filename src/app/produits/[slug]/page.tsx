@@ -26,7 +26,7 @@ export async function generateMetadata({
   if (!product) return {};
 
   const title = `${product.name} — ${product.price} €`;
-  const description = `${product.tagline}. ${product.description.split(". ")[0]}. Garantie 3 ans, livraison gratuite, sans engagement.`;
+  const description = `${product.tagline}. ${product.description.split(". ")[0]}. Garantie 2 ans, livraison gratuite, sans engagement.`;
 
   return {
     title,
@@ -99,7 +99,7 @@ export default async function ProductPage({
             <p className="mt-6 flex items-baseline gap-3">
               <span className="stat-value text-4xl">{product.price} €</span>
               <span className="text-sm text-muted-foreground">
-                + abonnement dès 5,90 €/mois
+                + abonnement dès 7,50 €/mois
               </span>
             </p>
 
@@ -197,28 +197,26 @@ export default async function ProductPage({
       <Section>
         <SectionHead
           eyebrow="Abonnement associé"
-          title="Le tarif mensuel dépend du nombre de véhicules"
-          lead="Le boîtier est un achat unique. L'abonnement couvre la carte SIM multi-opérateurs, la plateforme, les alertes et l'historique. Sans engagement de durée."
+          title="Le tarif mensuel dépend de la durée choisie"
+          lead="Le boîtier est un achat unique. L'abonnement couvre la carte SIM 4G et l'accès à la plateforme. La formule 1 mois est sans engagement."
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.slug}
               className={`border rounded-lg p-6 ${
-                plan.highlight ? "border-accent border-2" : "border-border"
+                plan.highlight ? "border-cta border-2" : "border-border/50"
               }`}
             >
               <h3 className="text-lg font-bold">{plan.name}</h3>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {plan.maxVehicles
-                  ? `${plan.minVehicles} à ${plan.maxVehicles} véhicules`
-                  : `${plan.minVehicles}+ véhicules`}
-              </p>
+              <p className="mt-1 text-xs text-muted-foreground">{plan.tagline}</p>
               <p className="mt-4">
-                <span className="stat-value text-2xl">
-                  {plan.pricePerMonth.toFixed(2).replace(".", ",")} €
+                <span className="text-2xl font-bold text-primary">
+                  {plan.totalPrice} €
                 </span>
-                <span className="text-xs text-muted-foreground"> /mois/véhicule</span>
+                <span className="text-xs text-muted-foreground">
+                  {" "}soit {plan.pricePerMonth.toFixed(2).replace(".", ",")} €/mois
+                </span>
               </p>
             </div>
           ))}

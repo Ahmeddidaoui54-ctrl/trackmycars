@@ -60,7 +60,7 @@ export const products: Product[] = [
       {
         question: "Faut-il un abonnement en plus du tracker ?",
         answer:
-          "Oui, un abonnement est nécessaire pour la carte SIM et l'accès à la plateforme de suivi. Nos abonnements sont sans engagement à partir de 9,90 € par mois et par tracker, avec dégressivité pour les flottes.",
+          "Oui, un abonnement est nécessaire pour la carte SIM et l'accès à la plateforme de suivi. L'abonnement à la connectivité est de 15 € pour un mois sans engagement, 60 € pour six mois ou 90 € pour douze mois, soit 7,50 € par mois.",
       },
     ],
   },
@@ -211,7 +211,52 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+
+    slug: "tracker-batterie",
+    name: "Tracker GPS Batterie",
+    shortName: "Tracker Batterie",
+    price: 139,
+    image: "/images/tracker-batterie.jpeg",
+    tagline: "Batterie longue durée et remontée des données moteur",
+    description:
+      "Le tracker GPS batterie combine l'autonomie d'un boîtier indépendant et la finesse des données d'un modèle câblé. Il remonte les démarrages et coupures moteur, signale tout débranchement et alerte au moindre déplacement, sans dépendre en permanence du circuit électrique du véhicule. C'est le compromis choisi par les gestionnaires de parc qui veulent des données moteur sur des matériels dont l'alimentation n'est pas garantie.",
+    autonomy: "Batterie longue durée",
+    installation: "Câblée ou autonome selon le véhicule",
+    features: [
+      "Application mobile iOS & Android",
+      "Suivi en temps réel",
+      "Historique d'itinéraire",
+      "Alerte excès de vitesse",
+      "Alarme moteur ON/OFF",
+      "Alarme de mouvement",
+      "Alerte de déplacement",
+      "Alerte de sortie de zone (geofencing)",
+      "Alerte de débranchement",
+    ],
+    bestFor: ["flotte", "camion", "engin-chantier", "utilitaire"],
+    keywords: [
+      "traceur gps batterie",
+      "tracker gps autonome moteur",
+      "balise gps batterie longue duree",
+      "gps vehicule alerte debranchement",
+    ],
+    faq: [
+      {
+        question: "Quelle différence avec le tracker aimanté ?",
+        answer:
+          "Le tracker batterie remonte les données moteur (démarrage, coupure) et l'alerte de débranchement, ce que l'aimanté ne fait pas. En contrepartie, l'aimanté offre une autonomie plus longue et se pose sans aucun raccordement. Le batterie est le bon choix dès que vous voulez savoir non seulement où est le véhicule, mais aussi quand il tourne.",
+      },
+      {
+        question: "Est-il adapté à un parc mixte ?",
+        answer:
+          "Oui, c'est même son intérêt principal. Sur une flotte mêlant véhicules récents, engins et matériels sans prise OBD exploitable, il offre un niveau de données homogène sur l'ensemble du parc, piloté depuis un seul compte.",
+      },
+    ],
+  },
 ];
+
+
 
 export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);

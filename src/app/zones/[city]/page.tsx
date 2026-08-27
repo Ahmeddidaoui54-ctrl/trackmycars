@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!city) return {};
 
   const title = `Traceur GPS ${city.inCity} (${city.departmentCode}) — Installation sur site`;
-  const description = `Tracker GPS ${city.inCity} : installation par nos techniciens en ${city.department}, suivi temps réel, antivol et gestion de flotte. Sans engagement, garantie 3 ans.`;
+  const description = `Tracker GPS ${city.inCity} : installation par nos techniciens en ${city.department}, suivi temps réel, antivol et gestion de flotte. Sans engagement, garantie 2 ans.`;
 
   return {
     title,
@@ -84,7 +84,7 @@ export default async function CityPage({
     },
     {
       question: `Proposez-vous un suivi après l'installation ${city.inCity} ?`,
-      answer: `Oui. Le support est assuré par notre équipe basée en France, joignable par téléphone, email et WhatsApp. Le matériel est garanti 3 ans pièces et main-d'œuvre, et une intervention sur site reste possible en cas de dysfonctionnement.`,
+      answer: `Oui. Le support est assuré par notre équipe basée en France, joignable par téléphone, email et WhatsApp. Le matériel est garanti 2 ans pièces et main-d'œuvre, et une intervention sur site reste possible en cas de dysfonctionnement.`,
     },
   ];
 
