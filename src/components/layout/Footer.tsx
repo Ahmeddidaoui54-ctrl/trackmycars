@@ -54,6 +54,11 @@ export function Footer() {
                 </li>
               ))}
               <li>
+                <Link href="/tarifs" className="text-white/70 hover:text-cta">
+                  Tarifs
+                </Link>
+              </li>
+              <li>
                 <Link href="/abonnements" className="text-white/70 hover:text-cta">
                   Abonnements
                 </Link>

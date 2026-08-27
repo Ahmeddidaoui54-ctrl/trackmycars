@@ -42,6 +42,7 @@ export default function PlanDuSitePage() {
                 { href: "/produits", label: "Produits" },
                 { href: "/secteurs", label: "Secteurs équipés" },
                 { href: "/zones", label: "Zones desservies" },
+                { href: "/tarifs", label: "Tarifs" },
                 { href: "/abonnements", label: "Abonnements" },
                 { href: "/devis", label: "Demander un devis" },
                 { href: "/faq", label: "FAQ" },

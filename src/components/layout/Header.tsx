@@ -20,6 +20,7 @@ const nav = [
   { href: "/produits", label: "Produits" },
   { href: "/secteurs", label: "Secteurs" },
   { href: "/zones", label: "Zones" },
+  { href: "/tarifs", label: "Tarifs" },
   { href: "/abonnements", label: "Nos abonnements" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
