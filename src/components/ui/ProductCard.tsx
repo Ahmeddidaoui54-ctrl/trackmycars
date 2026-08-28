@@ -35,7 +35,7 @@ export function ProductCard({
         </h3>
         <p className="mt-1.5 text-sm text-muted-foreground">{product.tagline}</p>
         <ul className="mt-4 space-y-1.5 text-xs text-muted-foreground">
-          {product.features.slice(0, 4).map((f) => (
+          {product.features.map((f) => (
             <li key={f} className="flex gap-2">
               <span className="text-cta" aria-hidden="true">▪</span>
               {f}

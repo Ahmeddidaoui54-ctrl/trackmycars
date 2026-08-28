@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { products } from "@/lib/data/products";
 import { sectors } from "@/lib/data/sectors";
+import { site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui/Section";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 
@@ -14,6 +15,50 @@ export const metadata: Metadata = {
 const crumbs = [
   { name: "Accueil", href: "/" },
   { name: "FAQ", href: "/faq" },
+];
+
+/** Les huit questions du site actuel, reprises telles quelles. */
+const officielles = [
+  {
+    question: "Comment installer Track My Cars ?",
+    answer:
+      "Nous avons conçu le traceur GPS Track My Cars pour qu'il soit simple et convivial. Sur le modèle OBD, il suffit de le brancher sur le port OBD de votre véhicule — voir la question suivante pour le localiser. Vous pouvez également opter pour un modèle alimenté par batterie, qui se place discrètement n'importe où dans le véhicule. Une fois connecté, activez le traceur via l'application mobile, compatible iOS et Android, en saisissant le numéro d'identification du traceur. Un manuel d'utilisation détaillé est inclus dans votre commande.",
+  },
+  {
+    question: "Où se trouve la prise OBD dans mon véhicule ?",
+    answer:
+      "La prise OBD est présente sur tous les véhicules commercialisés depuis 2001 pour l'essence et 2004 pour le diesel. Elle se situe généralement sous le volant, à gauche du tableau de bord, dans le compartiment à fusibles, sur la console centrale, à l'intérieur de la boîte à gants ou à proximité du frein à main. Le manuel de votre véhicule indique son emplacement exact.",
+  },
+  {
+    question: "Pourquoi ai-je besoin d'une carte SIM pour le traceur GPS ?",
+    answer:
+      "L'application doit communiquer avec le traceur GPS pour fournir les données de localisation en temps réel, et cette communication passe par le réseau cellulaire. La carte SIM 4G est incluse dans nos abonnements, qui couvrent environ 100 Mo de données par mois — le volume nécessaire à un suivi permanent.",
+  },
+  {
+    question: "Ai-je besoin d'un smartphone pour utiliser le tracker ?",
+    answer:
+      "Non. Vous pouvez surveiller votre traceur depuis l'interface web, accessible sur n'importe quel navigateur sans installation. Le traceur envoie également des alertes par SMS, ce qui rend le service utilisable avec n'importe quel téléphone capable de recevoir des messages.",
+  },
+  {
+    question: "Combien de temps faut-il pour recevoir ma commande ?",
+    answer:
+      "Nous traitons toutes les commandes le jour même, du lundi au vendredi. Les colis sont expédiés quotidiennement avec une livraison sous 48 heures, et un numéro de suivi vous est communiqué pour chaque commande.",
+  },
+  {
+    question: "L'application mobile est-elle entièrement gratuite ?",
+    answer:
+      "Absolument. L'application mobile est 100 % gratuite, sans frais caché ni option payante. L'interface web l'est également. Seule la connectivité fait l'objet d'un abonnement, à partir de 7,50 € par mois sur la formule 12 mois.",
+  },
+  {
+    question: "Le traceur GPS est-il couvert par la garantie ?",
+    answer:
+      "Oui. Nos traceurs sont livrés avec une garantie de 2 ans couvrant les pièces et la main-d'œuvre. En cas de panne non liée à une mauvaise utilisation, la réparation ou le remplacement est pris en charge sans frais supplémentaires.",
+  },
+  {
+    question: "Que faire si je ne suis pas satisfait de mon traceur ?",
+    answer:
+      "Vous pouvez demander un remboursement dans les quatorze jours suivant la réception de votre commande si le traceur ne répond pas à vos attentes, après avoir respecté les consignes d'installation et contacté notre équipe d'assistance. Le retour est gratuit.",
+  },
 ];
 
 const general = [
@@ -86,6 +131,7 @@ const service = [
 ];
 
 const allQuestions = [
+  ...officielles,
   ...general,
   ...legal,
   ...service,
@@ -104,6 +150,19 @@ export default function FaqPage() {
       </div>
 
       <Section className="pt-6!">
+        <div className="mb-12 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 rounded-xl border border-border/50 bg-muted p-6">
+          <p className="text-lg font-bold">Besoin de notre aide ?</p>
+          <a
+            href={`tel:${site.phone}`}
+            className="text-2xl font-bold text-cta hover:opacity-85"
+          >
+            +33 6 51 11 16 09
+          </a>
+          <a href="/devis" className="btn btn-primary btn-sm sm:ml-auto">
+            Prendre rendez-vous
+          </a>
+        </div>
+
         <SectionHead
           eyebrow="FAQ"
           title="Toutes les réponses, sans détour"
@@ -111,6 +170,12 @@ export default function FaqPage() {
         />
 
         <div className="mt-14 space-y-14 max-w-4xl">
+          <div>
+            <h2 className="text-2xl font-bold">Votre traceur au quotidien</h2>
+            <div className="rule mt-3 mb-6" />
+            <FaqList items={officielles} />
+          </div>
+
           <div>
             <h2 className="text-2xl font-bold">Fonctionnement</h2>
             <div className="rule mt-3 mb-6" />

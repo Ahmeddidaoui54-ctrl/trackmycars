@@ -382,8 +382,8 @@ export default function TarifsPage() {
           ))}
         </div>
         <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          Les trackers embarquent une carte SIM 4G qui consomme environ 100 Mo par
-          mois. L&apos;abonnement est souscrit par tracker : chaque boîtier a sa
+          Nos trackers, équipés de cartes SIM 4G, consomment environ 100 Mo de données
+          par mois. L&apos;abonnement est souscrit par tracker : chaque boîtier a sa
           propre carte SIM. Au-delà de trois véhicules, nous établissons une
           proposition adaptée au volume.
         </p>
