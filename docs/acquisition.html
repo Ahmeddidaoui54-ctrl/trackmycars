@@ -1,0 +1,470 @@
+<title>Treize Portes d'Entrée</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+:root{
+  --paper:#eef2f5; --surface:#fff; --surface-2:#e3e9ee;
+  --ink:#0d1620; --ink-soft:#546471; --ink-faint:#8496a3;
+  --rule:#cfd9e1; --rule-soft:#e0e7ec;
+  --signal:#0a6e9e; --signal-bright:#1f9fe0;
+  --alert:#b8332a; --warn:#9a6000; --good:#12704a;
+  --shadow:0 1px 2px rgba(13,22,32,.05), 0 8px 24px -12px rgba(13,22,32,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0a1119; --surface:#111c26; --surface-2:#18262f;
+    --ink:#e4edf3; --ink-soft:#93a6b3; --ink-faint:#66798a;
+    --rule:#23343f; --rule-soft:#1a2833;
+    --signal:#48b6e8; --signal-bright:#68cbf5;
+    --alert:#f0736a; --warn:#e0a340; --good:#48c48f;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0a1119; --surface:#111c26; --surface-2:#18262f;
+  --ink:#e4edf3; --ink-soft:#93a6b3; --ink-faint:#66798a;
+  --rule:#23343f; --rule-soft:#1a2833;
+  --signal:#48b6e8; --signal-bright:#68cbf5;
+  --alert:#f0736a; --warn:#e0a340; --good:#48c48f;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:Barlow,"Helvetica Neue",Arial,sans-serif;text-wrap:balance;margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead-in{max-width:1180px;margin:0 auto;padding:44px 24px 38px}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--signal-bright)}
+h1{font-size:clamp(38px,6.2vw,68px);font-weight:700;letter-spacing:-.028em;line-height:1.02;margin:20px 0 0}
+.standfirst{max-width:62ch;margin:18px 0 0;font-size:19px;color:var(--ink-soft)}
+.meta-strip{display:flex;flex-wrap:wrap;margin-top:32px;border-top:1px solid var(--rule-soft)}
+.meta{padding:16px 28px 0 0;margin-right:28px;border-right:1px solid var(--rule-soft)}
+.meta:last-child{border-right:0}
+.meta dt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);margin:0}
+.meta dd{font-family:Barlow,sans-serif;font-size:26px;font-weight:600;margin:2px 0 0;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+.shell{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr}
+@media(min-width:1080px){.shell{grid-template-columns:210px minmax(0,1fr);gap:56px;align-items:start}}
+.rail{display:none}
+@media(min-width:1080px){.rail{display:block;position:sticky;top:0;padding:48px 0;max-height:100vh;overflow-y:auto}}
+.rail h2{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:14px}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rail a{display:grid;grid-template-columns:22px 1fr;gap:6px;font-family:Barlow,sans-serif;
+  font-size:13.5px;line-height:1.35;color:var(--ink-soft);text-decoration:none;padding:5px 0 5px 10px;
+  border-left:2px solid transparent;margin-left:-12px}
+.rail a:hover{color:var(--signal);border-left-color:var(--signal)}
+.rail a .n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);padding-top:1px}
+
+main{padding:48px 0 96px;min-width:0}
+section{margin-bottom:60px;scroll-margin-top:24px}
+.sec-head{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;margin-bottom:8px}
+.sec-n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--signal)}
+h2{font-size:clamp(25px,3.2vw,33px);font-weight:700;letter-spacing:-.022em;line-height:1.14}
+h3{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:32px 0 8px}
+p{margin:14px 0;max-width:68ch}
+a{color:var(--signal)}
+ul,ol{max-width:68ch;padding-left:1.15em}
+li{margin:6px 0}
+
+.tw{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-family:Barlow,sans-serif;font-size:14.5px;min-width:540px}
+caption{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);padding:14px 16px 0}
+th,td{padding:10px 16px;text-align:left;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);border-bottom:1px solid var(--rule)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+tbody th{font-weight:600}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace;font-size:13.5px}
+tr.hi td,tr.hi th{background:color-mix(in srgb,var(--signal) 7%,transparent)}
+
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;
+  letter-spacing:.07em;text-transform:uppercase;padding:2.5px 7px;border-radius:2px;white-space:nowrap}
+.c-hi{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.c-md{background:color-mix(in srgb,var(--signal) 14%,transparent);color:var(--signal)}
+.c-lo{background:color-mix(in srgb,var(--ink-faint) 18%,transparent);color:var(--ink-soft)}
+.c-warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.c-alert{background:color-mix(in srgb,var(--alert) 15%,transparent);color:var(--alert)}
+
+.verdict{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--signal);
+  border-radius:2px;padding:26px 28px;margin:26px 0;box-shadow:var(--shadow)}
+.verdict .label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:10px}
+.verdict .answer{font-family:Barlow,sans-serif;font-size:clamp(21px,3vw,28px);font-weight:700;
+  letter-spacing:-.022em;line-height:1.16;margin:0}
+.verdict p{margin:12px 0 0}
+
+.kw{background:var(--surface-2);border:1px solid var(--rule-soft);border-radius:2px;
+  padding:16px 18px;margin:20px 0;overflow-x:auto}
+.kw ul{list-style:none;margin:0;padding:0;display:grid;gap:3px 24px;max-width:none;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.kw li{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-soft);margin:0;white-space:nowrap}
+.kw li::before{content:"›";color:var(--signal);margin-right:7px}
+
+.top3{display:grid;gap:16px;margin:26px 0}
+@media(min-width:760px){.top3{grid-template-columns:repeat(3,1fr)}}
+.pick{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--signal-bright);
+  border-radius:2px;padding:22px}
+.pick .rank{font-family:"IBM Plex Mono",monospace;font-size:24px;font-weight:700;color:var(--signal);line-height:1}
+.pick h3{margin:10px 0 0;font-size:18px}
+.pick p{font-size:14.5px;color:var(--ink-soft);margin:8px 0 0;max-width:none}
+
+.pull{border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);padding:22px 0;margin:32px 0;max-width:68ch}
+.pull p{font-family:Barlow,sans-serif;font-size:clamp(18px,2.4vw,22px);font-weight:500;
+  line-height:1.34;letter-spacing:-.015em;margin:0}
+.pull .who{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);margin-top:12px}
+
+footer{border-top:1px solid var(--rule);background:var(--surface)}
+.footer-in{max-width:1180px;margin:0 auto;padding:36px 24px 56px}
+footer h2{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:12px}
+.srcs{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:Barlow,sans-serif;font-size:13.5px}
+.srcs a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule)}
+.srcs a:hover{color:var(--signal);border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal-bright);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <p class="kicker"><span class="dot"></span>Acquisition sans publicité · Track My Cars · Août 2026</p>
+    <h1>Treize portes d'entrée</h1>
+    <p class="standfirst">Le site VTC a rempli son carnet sans dépenser un euro en publicité. Voici ce qui se transpose, ce qui ne se transpose pas, et les trois canaux que ce marché-ci offre en plus.</p>
+    <dl class="meta-strip">
+      <div class="meta"><dt>Canaux audités</dt><dd>13</dd></div>
+      <div class="meta"><dt>Repris du VTC</dt><dd>3 sur 4</dd></div>
+      <div class="meta"><dt>Nouveaux ici</dt><dd>3</dd></div>
+      <div class="meta"><dt>Gratuits à l'entrée</dt><dd>9</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Sommaire">
+    <h2>Sommaire</h2>
+    <ol>
+      <li><a href="#s1"><span class="n">01</span><span>Ce qui a marché sur le VTC</span></a></li>
+      <li><a href="#s2"><span class="n">02</span><span>Les treize canaux</span></a></li>
+      <li><a href="#s3"><span class="n">03</span><span>Le socle local</span></a></li>
+      <li><a href="#s4"><span class="n">04</span><span>Places de marché</span></a></li>
+      <li><a href="#s5"><span class="n">05</span><span>Comparateurs</span></a></li>
+      <li><a href="#s6"><span class="n">06</span><span>Prescripteurs terrain</span></a></li>
+      <li><a href="#s7"><span class="n">07</span><span>Fédérations et presse</span></a></li>
+      <li><a href="#s8"><span class="n">08</span><span>Lead magnets</span></a></li>
+      <li><a href="#s9"><span class="n">09</span><span>Plan 90 jours</span></a></li>
+      <li><a href="#s10"><span class="n">10</span><span>Les trois à activer</span></a></li>
+      <li><a href="#s11"><span class="n">11</span><span>Le déblocage</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="s1">
+      <div class="sec-head"><span class="sec-n">01</span><h2>Ce qui a marché sur le VTC</h2></div>
+      <p>Le site VTC a réussi sans publicité avec quatre leviers. Trois se transposent tels quels. Le quatrième demande une adaptation, et c'est le plus intéressant.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Transposition du playbook varvtc.fr</caption>
+          <thead><tr><th>Levier VTC</th><th>Transposable</th><th>Version Track My Cars</th></tr></thead>
+          <tbody>
+            <tr><th>Contenu massif — 304 pages, 183 corridors</th><td><span class="chip c-hi">Déjà fait</span></td><td>110 pages, 66 secteur × ville</td></tr>
+            <tr><th>Google Business Profile + annuaires</th><td><span class="chip c-md">Identique</span></td><td>Bloqué : il faut une adresse</td></tr>
+            <tr><th>Avis Google sollicités</th><td><span class="chip c-md">Identique</span></td><td>À lancer</td></tr>
+            <tr class="hi"><th>Pitch email aux 20 hôtels</th><td><span class="chip c-warn">À adapter</span></td><td>Les prescripteurs ne sont pas des hôtels</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Pour un VTC, le prescripteur est le concierge d'hôtel : il a le client au moment exact où le besoin naît. Pour un traceur GPS, ce moment appartient à d'autres — le garagiste après un vol, le loueur d'engins, l'assureur au moment du devis.</p>
+
+      <div class="verdict">
+        <p class="label">Ce qui change</p>
+        <p class="answer">Le VTC vendait un service local à une personne. Ici on vend un produit physique <em>et</em> un service B2B.</p>
+        <p>Cela ouvre trois familles de canaux qui n'existaient pas pour le VTC : les places de marché, les comparateurs, et les plateformes de leads professionnels.</p>
+      </div>
+    </section>
+
+    <section id="s2">
+      <div class="sec-head"><span class="sec-n">02</span><h2>Les treize canaux, croisés</h2></div>
+      <div class="tw">
+        <table>
+          <caption>Coût, délai, potentiel, segment</caption>
+          <thead><tr><th>Canal</th><th>Coût</th><th>Délai</th><th>Potentiel</th><th>Segment</th></tr></thead>
+          <tbody>
+            <tr class="hi"><th>A · Référencement local</th><td><span class="chip c-hi">Faible</span></td><td>1–3 mois</td><td><span class="chip c-hi">Très fort</span></td><td>Particuliers + PME</td></tr>
+            <tr class="hi"><th>B · Places de marché</th><td><span class="chip c-md">Moyen</span></td><td>2–6 sem.</td><td><span class="chip c-hi">Très fort</span></td><td>Particuliers</td></tr>
+            <tr class="hi"><th>C · Comparateurs</th><td><span class="chip c-hi">Faible</span></td><td>1–2 mois</td><td><span class="chip c-md">Fort</span></td><td>Particuliers</td></tr>
+            <tr><th>D · Leads B2B</th><td><span class="chip c-warn">Au lead</span></td><td>Immédiat</td><td><span class="chip c-md">Fort</span></td><td>Flottes</td></tr>
+            <tr class="hi"><th>E · Prescripteurs terrain</th><td><span class="chip c-md">Moyen</span></td><td>1–3 mois</td><td><span class="chip c-hi">Très fort</span></td><td>Les deux</td></tr>
+            <tr><th>F · Fédérations</th><td><span class="chip c-hi">Faible</span></td><td>2–4 mois</td><td><span class="chip c-md">Fort</span></td><td>Pros</td></tr>
+            <tr><th>G · Presse spécialisée</th><td><span class="chip c-hi">Faible</span></td><td>1–3 mois</td><td><span class="chip c-md">Fort</span></td><td>Flottes</td></tr>
+            <tr><th>H · Contenu et lead magnets</th><td><span class="chip c-alert">Élevé</span></td><td>3–6 mois</td><td><span class="chip c-hi">Très fort</span></td><td>Les deux</td></tr>
+            <tr><th>I · Communautés</th><td><span class="chip c-hi">Faible</span></td><td>Immédiat</td><td><span class="chip c-lo">Moyen</span></td><td>Particuliers</td></tr>
+            <tr class="hi"><th>J · Avis</th><td><span class="chip c-hi">Faible</span></td><td>1 mois</td><td><span class="chip c-hi">Très fort</span></td><td>Les deux</td></tr>
+            <tr><th>K · Salons</th><td><span class="chip c-alert">Élevé</span></td><td>Ponctuel</td><td><span class="chip c-lo">Moyen</span></td><td>Pros</td></tr>
+            <tr><th>L · Parrainage et revendeurs</th><td><span class="chip c-hi">Faible</span></td><td>2–3 mois</td><td><span class="chip c-md">Fort</span></td><td>Les deux</td></tr>
+            <tr><th>M · Prospection directe</th><td><span class="chip c-md">Moyen</span></td><td>2–4 sem.</td><td><span class="chip c-md">Fort</span></td><td>Flottes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s3">
+      <div class="sec-head"><span class="sec-n">03</span><h2>Le socle local — et il est bloqué</h2></div>
+      <p>C'est ce qui a porté le VTC. Le dispositif est identique, à une exception près : <strong>il faut une adresse physique en PACA.</strong> Sans elle, la fiche Google Business Profile ne peut pas être validée, et aucune des 66 pages ville ne remontera dans le pack local.</p>
+
+      <div class="tw">
+        <table>
+          <caption>À faire, dans l'ordre — tout est gratuit</caption>
+          <thead><tr><th>Plateforme</th><th class="num">Temps</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><th>Google Business Profile</th><td class="num">30 min</td><td>Catégorie : installateur d'équipements automobiles</td></tr>
+            <tr><th>Bing Places</th><td class="num">10 min</td><td>Import en un clic depuis GBP — et Bing alimente ChatGPT</td></tr>
+            <tr><th>Apple Business Connect</th><td class="num">15 min</td><td>Plans et Siri</td></tr>
+            <tr><th>Foursquare</th><td class="num">10 min</td><td>Alimente Uber, Snapchat, X</td></tr>
+            <tr><th>PagesJaunes / Solocal</th><td class="num">20 min</td><td>Fiche de base gratuite</td></tr>
+            <tr><th>CCI Var, Bouches-du-Rhône, Alpes-Maritimes</th><td class="num">30 min</td><td>Lien institutionnel</td></tr>
+            <tr><th>Annuaires des mairies et agglomérations</th><td class="num">1 h</td><td>Marseille, Nice, Toulon, Aix</td></tr>
+            <tr><th>Kompass, Europages</th><td class="num">30 min</td><td>Visibilité B2B</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Un avantage sur le VTC : Track My Cars peut déclarer une <strong>adresse réelle</strong> plutôt qu'une zone de service, ce qui est bien plus solide pour le pack local. Et la requête <span class="mono">magasin traceur gps marseille</span>, relevée dans l'audit de mots-clés, montre qu'il existe une demande de retrait sur place.</p>
+    </section>
+
+    <section id="s4">
+      <div class="sec-head"><span class="sec-n">04</span><h2>Places de marché — le canal que le VTC ne pouvait pas avoir</h2></div>
+      <p>C'est la trouvaille la plus directement rentable de l'audit de mots-clés. Le public tape, littéralement :</p>
+
+      <div class="kw">
+        <ul>
+          <li>traceur gps sans abonnement amazon</li>
+          <li>traceur gps fnac</li>
+          <li>traceur gps sans abonnement action</li>
+          <li>traceur gps darty</li>
+          <li>traceur gps sans abonnement temu</li>
+          <li>traceur gps norauto</li>
+        </ul>
+      </div>
+
+      <p>Ces requêtes existent parce que <strong>les gens achètent là</strong>. Aujourd'hui, ils n'y trouvent pas Track My Cars.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Place de marché</th><th>Public</th><th class="num">Commission</th><th class="num">Priorité</th></tr></thead>
+          <tbody>
+            <tr class="hi"><th>Amazon</th><td>Le plus gros volume, tous segments</td><td class="num">~15 %</td><td class="num">1</td></tr>
+            <tr><th>Cdiscount</th><td>Grand public, sensible au prix</td><td class="num">~12–15 %</td><td class="num">2</td></tr>
+            <tr><th>ManoMano</th><td>Bricolage, artisans, BTP</td><td class="num">~15 %</td><td class="num">3</td></tr>
+            <tr><th>Fnac / Darty</th><td>Grand public, image de sérieux</td><td class="num">~15 %</td><td class="num">4</td></tr>
+            <tr><th>Rakuten</th><td>Second marché</td><td class="num">~12 %</td><td class="num">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Le double bénéfice.</strong> Ce ne sont pas seulement des ventes : une fiche Amazon bien remplie ressort dans Google sur les requêtes produit, et génère des avis réutilisables sur le site.</p>
+      <p><strong>Le piège.</strong> Ne jamais vendre moins cher sur la place de marché que sur le site. La commission s'absorbe, elle ne se répercute pas en cassant son propre canal.</p>
+    </section>
+
+    <section id="s5">
+      <div class="sec-head"><span class="sec-n">05</span><h2>Comparateurs — emprunter une autorité au lieu de la construire</h2></div>
+      <p>Le cluster « meilleur traceur GPS » et « comparatif » pèse <strong>128 expressions</strong>. Il n'est pas tenu par des vendeurs, mais par des éditeurs de contenu : <span class="mono">trakmy.fr</span>, <span class="mono">meilleurs-traceurs-gps.fr</span>, <span class="mono">trackeo.fr</span>, <span class="mono">meilleurs.fr</span>, <span class="mono">guideautoweb.com</span>, <span class="mono">lefilo.fr</span>.</p>
+
+      <div class="pull">
+        <p>Se battre contre eux prendra des années. Se faire lister chez eux prend quelques semaines.</p>
+        <p class="who">Le meilleur rapport effort / résultat du dossier</p>
+      </div>
+
+      <ol>
+        <li>Repérer les articles qui rankent déjà sur « meilleur traceur GPS voiture », « comparatif traceur GPS moto », « traceur GPS sans abonnement ».</li>
+        <li>Écrire à l'éditeur : proposer un exemplaire en test, gratuit, sans contrepartie éditoriale exigée.</li>
+        <li>Fournir un dossier complet — photos détourées, spécifications, prix, et surtout <strong>le coupe-moteur</strong>, que personne d'autre ne propose. C'est l'angle qui rend l'article intéressant à écrire.</li>
+        <li>Accepter un lien affilié : leur intérêt économique, c'est votre volume.</li>
+      </ol>
+    </section>
+
+    <section id="s6">
+      <div class="sec-head"><span class="sec-n">06</span><h2>Prescripteurs terrain — l'équivalent des hôtels</h2></div>
+      <p>Le levier le plus sous-estimé, et celui qui a le mieux marché sur le VTC. Le principe : <strong>être présent au moment où le besoin naît</strong>, chez quelqu'un qui a déjà la confiance du client.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Sept familles de prescripteurs</caption>
+          <thead><tr><th>Prescripteur</th><th>Le moment où le besoin naît</th><th>Contrepartie</th></tr></thead>
+          <tbody>
+            <tr><th>Garages, carrossiers, centres auto</th><td>Après un vol ou une tentative, à l'achat d'un véhicule</td><td>Tarif revendeur + pose qu'ils facturent</td></tr>
+            <tr><th>Concessions et mandataires</th><td>À la livraison du véhicule</td><td>Commission ou option au dossier</td></tr>
+            <tr><th>Loueurs de véhicules</th><td>Non-restitution, dégradation</td><td>Tarif flotte + argument coupe-moteur</td></tr>
+            <tr class="hi"><th>Loueurs de matériel BTP</th><td>Vol d'engin sur chantier</td><td>Équiper leur parc, puis prescription</td></tr>
+            <tr class="hi"><th>Assureurs et courtiers</th><td>Au devis, à la déclaration de sinistre</td><td>Attestation d'équipement</td></tr>
+            <tr><th>Ports de plaisance, capitaineries</th><td>Vol de bateau ou de jet-ski</td><td>Affichage + tarif adhérents</td></tr>
+            <tr><th>Campings et aires de camping-car</th><td>Remisage, stationnement longue durée</td><td>Tarif adhérents</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Le VTC a fait exactement cela avec 20 hôtels et un email type. La même mécanique, avec 30 garages et loueurs de PACA, coûte quelques heures et aucun euro de publicité. Le modèle d'email existe déjà dans le dossier VTC.</p>
+    </section>
+
+    <section id="s7">
+      <div class="sec-head"><span class="sec-n">07</span><h2>Fédérations et presse — un raccourci vers des milliers d'entreprises</h2></div>
+      <p>Une fédération professionnelle négocie des accords fournisseurs pour ses adhérents. Un référencement vaut des centaines d'introductions.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Fédération</th><th class="num">Adhérents</th><th>Secteur</th></tr></thead>
+          <tbody>
+            <tr class="hi"><th>FNTR</th><td class="num">5 300 entreprises<br>243 000 salariés</td><td>Transport routier</td></tr>
+            <tr><th>OTRE</th><td class="num">3 200 entreprises<br>80 000 salariés</td><td>Transport, PME</td></tr>
+            <tr><th>FFB</th><td class="num">—</td><td>Bâtiment</td></tr>
+            <tr><th>CAPEB</th><td class="num">—</td><td>Artisans, fourgons</td></tr>
+            <tr><th>CNPA / FNAA</th><td class="num">—</td><td>Garages, loueurs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Ce qu'on leur propose : un tarif adhérent, un encart dans leur lettre d'information — et surtout le sujet qui les intéresse vraiment, <strong>la conformité RGPD de la géolocalisation des salariés</strong>. Une fédération relaie volontiers un contenu qui protège juridiquement ses membres.</p>
+
+      <h3>La presse, gratuite si le sujet est bon</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Titre</th><th>Angle à proposer</th></tr></thead>
+          <tbody>
+            <tr><th>Flottes Automobiles</th><td>Le coût réel d'un dispositif sur trois ans</td></tr>
+            <tr><th>Journal des Flottes</th><td>Cadre légal après les dernières sanctions CNIL</td></tr>
+            <tr class="hi"><th>Le Moniteur, Batiweb</th><td>+14 % de vols d'engins en 2025, 31 000 € par entreprise</td></tr>
+            <tr><th>L'Officiel des Transporteurs</th><td>Vol de fret sur aires non sécurisées</td></tr>
+            <tr><th>Var-Matin, La Provence, Nice-Matin</th><td>Une entreprise locale face au vol de véhicules</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>L'angle juridique reste le plus solide : c'est le seul sujet où Track My Cars parle en expert plutôt qu'en vendeur, et celui que les rédactions acceptent le plus facilement.</p>
+    </section>
+
+    <section id="s8">
+      <div class="sec-head"><span class="sec-n">08</span><h2>Lead magnets — transformer du trafic en contacts</h2></div>
+      <p>Quatre documents à mettre en téléchargement contre une adresse email :</p>
+      <ol>
+        <li>Modèle de note d'information aux salariés (obligation de l'article L.1222-4)</li>
+        <li>Mention type pour le registre des traitements</li>
+        <li>Clause type de géolocalisation pour un contrat de location</li>
+        <li>Grille de calcul du coût d'un vol pour une flotte</li>
+      </ol>
+
+      <div class="verdict">
+        <p class="label">Pourquoi ça marche</p>
+        <p class="answer">Quelqu'un qui télécharge le premier document est en train d'équiper sa flotte.</p>
+        <p>C'est le contact le mieux qualifié qui existe sur ce marché, et il ne coûte rien à produire.</p>
+      </div>
+
+      <p>À compléter par <strong>la vidéo</strong> : les requêtes « comment installer un traceur GPS » et « comment fonctionne un traceur GPS » sont massives côté Bing, donc côté ChatGPT. Une démonstration de deux minutes par modèle capte cette demande et se réutilise sur les fiches produit. Les comptes Instagram, TikTok et Snapchat existent déjà.</p>
+    </section>
+
+    <section id="s9">
+      <div class="sec-head"><span class="sec-n">09</span><h2>Plan 90 jours</h2></div>
+
+      <h3>Semaines 1 à 2 — débloquer et poser le socle</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Action</th><th>Prérequis</th></tr></thead>
+          <tbody>
+            <tr class="hi"><th>Google Business Profile</th><td><span class="chip c-alert">Adresse physique</span></td></tr>
+            <tr><th>Bing Places, Apple Business Connect, Foursquare</th><td>GBP créé</td></tr>
+            <tr><th>Search Console et Bing Webmaster Tools</th><td>—</td></tr>
+            <tr><th>Trustpilot</th><td>—</td></tr>
+            <tr><th>Corriger la contradiction carte SIM, le titre d'accueil, les compteurs vides</th><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Semaines 3 à 6 — les canaux à effet rapide</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Action</th><th>Pourquoi en premier</th></tr></thead>
+          <tbody>
+            <tr><th>Ouvrir Amazon et Cdiscount</th><td>Le public y est déjà, requêtes confirmées</td></tr>
+            <tr><th>Écrire aux 8 comparateurs qui rankent</th><td>Emprunte une autorité existante</td></tr>
+            <tr><th>Pitcher 30 garages et loueurs de PACA</th><td>Le levier qui a marché sur le VTC</td></tr>
+            <tr><th>Solliciter 20 avis Google</th><td>Premier facteur du pack local</td></tr>
+            <tr><th>Publier /comparatif et /guide-legal</th><td>174 expressions non couvertes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Semaines 7 à 12 — installer l'autorité</h3>
+      <ul>
+        <li>Les quatre documents téléchargeables</li>
+        <li>Communiqué à Flottes Automobiles, Journal des Flottes, Var-Matin</li>
+        <li>Approcher FNTR, OTRE, CAPEB, CNPA</li>
+        <li>Quatre vidéos d'installation sur YouTube</li>
+        <li>Tester Companeo sur un budget plafonné</li>
+        <li>Lancer le parrainage et le kit revendeur</li>
+      </ul>
+    </section>
+
+    <section id="s10">
+      <div class="sec-head"><span class="sec-n">10</span><h2>Si l'on ne devait en garder que trois</h2></div>
+      <div class="top3">
+        <div class="pick">
+          <p class="rank">01</p>
+          <h3>Google Business Profile et les avis</h3>
+          <p>C'est ce qui a fait le VTC. C'est gratuit. Et c'est aujourd'hui bloqué par une simple adresse manquante.</p>
+        </div>
+        <div class="pick">
+          <p class="rank">02</p>
+          <h3>Les comparateurs</h3>
+          <p>128 expressions tenues par des éditeurs qui cherchent des produits à tester. Le coupe-moteur leur donne un sujet que personne d'autre ne peut leur offrir.</p>
+        </div>
+        <div class="pick">
+          <p class="rank">03</p>
+          <h3>Les prescripteurs terrain</h3>
+          <p>Trente garages et loueurs valent plus qu'un budget publicitaire. C'est exactement la mécanique des hôtels du VTC.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="s11">
+      <div class="sec-head"><span class="sec-n">11</span><h2>Le point qui débloque trois canaux d'un coup</h2></div>
+      <div class="verdict">
+        <p class="label">Priorité</p>
+        <p class="answer">L'attestation d'équipement pour les assureurs.</p>
+        <p>C'est le seul manque concurrentiel rentable identifié dans l'audit des prestations — Geotraceur le propose, pas Track My Cars.</p>
+      </div>
+      <ul>
+        <li>Les <strong>assureurs et courtiers</strong> deviennent prescripteurs, avec une raison concrète de recommander : la réduction de prime.</li>
+        <li>Les requêtes <span class="mono">traceur gps agréé assurance</span> et <span class="mono">gps réduction prime assurance</span> deviennent atteignables.</li>
+        <li>L'argument commercial se retourne : le boîtier ne coûte plus 79 €, il s'amortit sur la prime.</li>
+      </ul>
+      <p>Une convention avec un ou deux assureurs suffit à l'amorcer.</p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-in">
+    <h2>Sources</h2>
+    <div class="srcs">
+      <a href="https://pro.companeo.com/secteurs/secteur-de-lautomobile/">Companeo — secteur automobile</a>
+      <a href="https://www.hellopro.fr/">HelloPro</a>
+      <a href="https://www.flotauto.com/">Flottes Automobiles</a>
+      <a href="https://journalauto.com/journal-des-flottes/">Journal des Flottes</a>
+      <a href="https://www.fntr.fr/">FNTR</a>
+      <a href="https://www.batimat.com/fr-fr.html">Batimat 2026</a>
+    </div>
+  </div>
+</footer>
