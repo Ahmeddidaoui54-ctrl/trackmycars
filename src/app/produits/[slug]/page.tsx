@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { products, getProduct } from "@/lib/data/products";
@@ -82,12 +83,15 @@ export default async function ProductPage({
       {/* Fiche produit */}
       <section className="mx-auto max-w-7xl px-4 py-10">
         <div className="grid gap-10 lg:grid-cols-2">
-          <div className="bg-muted rounded-lg aspect-square flex items-center justify-center p-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="bg-muted rounded-xl aspect-square flex items-center justify-center p-10">
+            <Image
               src={product.image}
               alt={product.name}
-              className="max-h-full max-w-full object-contain"
+              width={800}
+              height={800}
+              priority
+              sizes="(max-width:1024px) 100vw, 50vw"
+              className="max-h-full w-auto object-contain"
             />
           </div>
 

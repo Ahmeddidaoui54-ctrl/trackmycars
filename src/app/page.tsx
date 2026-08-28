@@ -6,6 +6,7 @@ import { products } from "@/lib/data/products";
 import { sectors } from "@/lib/data/sectors";
 import { cities } from "@/lib/data/cities";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { Reveal } from "@/components/ui/Reveal";
 import { QuoteForm } from "@/components/forms/QuoteForm";
 import {
   FAQJsonLd,
@@ -344,7 +345,7 @@ export default function Home() {
             nos trackers répondent à vos besoins avec précision.
           </p>
         </div>
-        <div className="mt-12 grid gap-8 sm:grid-cols-3">
+        <Reveal className="mt-12 grid gap-8 sm:grid-cols-3">
           {whyUs.map((w) => (
             <div key={w.title}>
               <Image src={w.icon} alt="" width={64} height={64} className="h-14 w-auto" />
@@ -352,7 +353,7 @@ export default function Home() {
               <p className="mt-2 text-sm text-muted-foreground">{w.text}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* ————— TECHNOLOGIE DE POINTE ————— */}
@@ -372,7 +373,7 @@ export default function Home() {
               surveillance, prévenir les risques et offrir une transparence totale.
             </p>
           </div>
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+          <Reveal className="mt-12 grid gap-8 sm:grid-cols-3">
             {techPoints.map((t) => (
               <div key={t.title} className="bg-white rounded-xl p-7 border border-border/40">
                 <Image src={t.icon} alt="" width={56} height={56} className="h-12 w-auto" />
@@ -380,7 +381,7 @@ export default function Home() {
                 <p className="mt-2 text-sm text-muted-foreground">{t.text}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -397,7 +398,7 @@ export default function Home() {
             métier, pas du catalogue.
           </p>
         </div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sectors.map((s) => (
             <Link
               key={s.slug}
@@ -417,7 +418,7 @@ export default function Home() {
               </p>
             </Link>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* ————— COMMENT ÇA MARCHE ————— */}
@@ -451,11 +452,11 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20">
         <p className="eyebrow">Produits phares</p>
         <h2 className="mt-3 text-3xl sm:text-4xl">Nos produits</h2>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* ————— ZONES (apport SEO) ————— */}
@@ -498,7 +499,7 @@ export default function Home() {
             Des milliers de clients satisfaits font confiance à Track My Cars.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+        <Reveal className="mt-12 grid gap-6 sm:grid-cols-3">
           {testimonials.map((t) => (
             <figure
               key={t.author}
@@ -515,7 +516,7 @@ export default function Home() {
               <figcaption className="mt-5 text-sm font-bold">{t.author}</figcaption>
             </figure>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* ————— FAQ (apport SEO) ————— */}

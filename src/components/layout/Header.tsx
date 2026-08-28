@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/data/site";
 import { sectors } from "@/lib/data/sectors";
 import { products } from "@/lib/data/products";
@@ -28,6 +28,32 @@ const nav = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<"produits" | "secteurs" | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /** Petit délai à la fermeture : le curseur peut traverser le vide
+   *  entre le lien et le panneau sans que le menu disparaisse. */
+  function openMenu(key: "produits" | "secteurs") {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setMenu(key);
+  }
+  function scheduleClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setMenu(null), 180);
+  }
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setMenu(null);
+        setOpen(false);
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
 
   return (
     <>
@@ -67,8 +93,9 @@ export function Header() {
                   <div
                     key={item.href}
                     className="relative"
-                    onMouseEnter={() => key && setMenu(key)}
-                    onMouseLeave={() => setMenu(null)}
+                    onMouseEnter={() => key && openMenu(key)}
+                    onMouseLeave={() => key && scheduleClose()}
+                    onFocus={() => key && openMenu(key)}
                   >
                     <Link
                       href={item.href}
@@ -78,12 +105,12 @@ export function Header() {
                     </Link>
 
                     {key === "produits" && menu === "produits" && (
-                      <div className="absolute left-0 top-full w-72 bg-background border border-border/60 rounded-md shadow-lg p-2">
+                      <div className="absolute left-0 top-full w-72 bg-background border border-border/60 rounded-md shadow-lg p-2 origin-top animate-[dropdown_.16s_ease-out]">
                         {products.map((p) => (
                           <Link
                             key={p.slug}
                             href={`/produits/${p.slug}`}
-                            className="block px-3 py-2 rounded-sm hover:bg-muted"
+                            className="block px-3 py-2 rounded-sm hover:bg-muted transition-colors"
                           >
                             <span className="block text-sm font-semibold text-primary">
                               {p.shortName}
@@ -97,12 +124,12 @@ export function Header() {
                     )}
 
                     {key === "secteurs" && menu === "secteurs" && (
-                      <div className="absolute left-0 top-full w-[30rem] bg-background border border-border/60 rounded-md shadow-lg p-2 grid grid-cols-2 gap-0.5">
+                      <div className="absolute left-0 top-full w-[30rem] bg-background border border-border/60 rounded-md shadow-lg p-2 grid grid-cols-2 gap-0.5 origin-top animate-[dropdown_.16s_ease-out]">
                         {sectors.map((s) => (
                           <Link
                             key={s.slug}
                             href={`/secteurs/${s.slug}`}
-                            className="block px-3 py-2 text-sm rounded-sm hover:bg-muted"
+                            className="block px-3 py-2 text-sm rounded-sm hover:bg-muted transition-colors"
                           >
                             {s.label}
                           </Link>

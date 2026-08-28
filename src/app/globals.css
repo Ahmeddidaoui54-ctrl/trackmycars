@@ -41,6 +41,12 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    /* le header collant ne doit pas masquer l'ancre visée */
+    scroll-padding-top: 6rem;
+  }
+
   body {
     font-family: var(--font-sans);
     color: var(--color-foreground);
@@ -101,5 +107,40 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-accent);
+  }
+}
+
+@keyframes dropdown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@layer utilities {
+  /* Apparition douce des sections au défilement */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .5s ease-out, transform .5s ease-out;
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Rien ne bouge si l'utilisateur a désactivé les animations */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      transition-duration: .001ms !important;
+    }
+  }
+
+  /* Focus visible cohérent sur tout le site */
+  :focus-visible {
+    outline: 2px solid var(--color-cta);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 }

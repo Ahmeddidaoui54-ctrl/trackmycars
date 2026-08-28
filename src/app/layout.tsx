@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sarabun, Bai_Jamjuree } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollTop } from "@/components/ui/ScrollTop";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/data/site";
 import "./globals.css";
@@ -99,6 +100,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ScrollTop />
       </body>
     </html>
   );
