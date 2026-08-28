@@ -6,6 +6,7 @@ import { products } from "@/lib/data/products";
 import { sectors } from "@/lib/data/sectors";
 import { cities } from "@/lib/data/cities";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { HeroVideo } from "@/components/ui/HeroVideo";
 import { QuoteForm } from "@/components/forms/QuoteForm";
 import {
   FAQJsonLd,
@@ -158,15 +159,7 @@ export default function Home() {
 
       {/* ————— HERO ————— */}
       <section className="relative bg-primary text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/section-bg.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+        <HeroVideo />
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:py-32">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cta">

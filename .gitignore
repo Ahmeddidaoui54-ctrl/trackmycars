@@ -30,3 +30,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Vidéo source non compressée (le fichier servi est public/video/hero.mp4)

@@ -8,6 +8,7 @@ const csp = `
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com data:;
   img-src 'self' data: blob:;
+  media-src 'self';
   connect-src 'self' ws: wss: https://www.google-analytics.com;
   worker-src 'self' blob:;
   form-action 'self';
