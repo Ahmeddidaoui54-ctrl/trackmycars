@@ -58,6 +58,21 @@ export function Footer() {
                   Tarifs &amp; abonnements
                 </Link>
               </li>
+              <li>
+                <Link href="/comparatif" className="text-white/70 hover:text-cta">
+                  Comparatif
+                </Link>
+              </li>
+              <li>
+                <Link href="/guide-legal" className="text-white/70 hover:text-cta">
+                  Guide légal
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-white/70 hover:text-cta">
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
 

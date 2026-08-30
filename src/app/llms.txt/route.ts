@@ -2,6 +2,7 @@ import { site } from "@/lib/data/site";
 import { products } from "@/lib/data/products";
 import { sectors } from "@/lib/data/sectors";
 import { cities } from "@/lib/data/cities";
+import { articles } from "@/lib/data/articles";
 import { plans } from "@/lib/data/site";
 
 export const dynamic = "force-static";
@@ -39,6 +40,12 @@ ${cities.map((c) => `- [${c.label} (${c.departmentCode})](${site.url}/zones/${c.
 ## Pages de référence
 - [Nos produits](${site.url}/produits)
 - [Tarifs et abonnements — coût réel sur 3 ans](${site.url}/tarifs)
+- [Comparatif des traceurs GPS du marché](${site.url}/comparatif)
+- [Guide légal — géolocalisation et RGPD](${site.url}/guide-legal)
+
+## Articles
+${articles.map((a) => `- [${a.title}](${site.url}/blog/${a.slug}) — ${a.metaDescription}`).join("\n")}
+
 - [FAQ](${site.url}/faq)
 - [Demander un devis](${site.url}/devis)
 - [Contact](${site.url}/contact)

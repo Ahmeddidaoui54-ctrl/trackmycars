@@ -3,6 +3,7 @@ import { site } from "@/lib/data/site";
 import { products } from "@/lib/data/products";
 import { sectors } from "@/lib/data/sectors";
 import { cities, getSectorCityPairs } from "@/lib/data/cities";
+import { articles } from "@/lib/data/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -13,6 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/secteurs`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.url}/zones`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.url}/tarifs`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/comparatif`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/guide-legal`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/blog`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${site.url}/devis`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/faq`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.url}/contact`, changeFrequency: "yearly", priority: 0.5 },
@@ -50,8 +54,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: `${site.url}/blog/${a.slug}`,
+    lastModified: new Date(a.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   return [
     ...staticPages,
+    ...articlePages,
     ...productPages,
     ...sectorPages,
     ...cityPages,

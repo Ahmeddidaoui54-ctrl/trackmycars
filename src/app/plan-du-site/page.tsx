@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { products } from "@/lib/data/products";
 import { sectors } from "@/lib/data/sectors";
 import { cities, getCitiesForSector } from "@/lib/data/cities";
+import { articles } from "@/lib/data/articles";
 import { Section, SectionHead, Breadcrumbs } from "@/components/ui/Section";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
@@ -43,6 +44,9 @@ export default function PlanDuSitePage() {
                 { href: "/secteurs", label: "Secteurs équipés" },
                 { href: "/zones", label: "Zones desservies" },
                 { href: "/tarifs", label: "Tarifs & abonnements" },
+                { href: "/comparatif", label: "Comparatif traceurs GPS" },
+                { href: "/guide-legal", label: "Guide légal" },
+                { href: "/blog", label: "Blog" },
                 { href: "/devis", label: "Demander un devis" },
                 { href: "/faq", label: "FAQ" },
                 { href: "/contact", label: "Contact" },
@@ -62,6 +66,18 @@ export default function PlanDuSitePage() {
                 <li key={p.slug}>
                   <Link href={`/produits/${p.slug}`} className={linkCls}>
                     {p.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h2 className="mt-10 text-lg font-bold">Articles</h2>
+            <div className="rule mt-3 mb-4" />
+            <ul className="space-y-2">
+              {articles.map((a) => (
+                <li key={a.slug}>
+                  <Link href={`/blog/${a.slug}`} className={linkCls}>
+                    {a.title}
                   </Link>
                 </li>
               ))}

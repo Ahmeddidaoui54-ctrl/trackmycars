@@ -20,7 +20,9 @@ const nav = [
   { href: "/produits", label: "Produits" },
   { href: "/secteurs", label: "Secteurs" },
   { href: "/zones", label: "Zones" },
-  { href: "/tarifs", label: "Tarifs & abonnements" },
+  { href: "/tarifs", label: "Tarifs" },
+  { href: "/comparatif", label: "Comparatif" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
