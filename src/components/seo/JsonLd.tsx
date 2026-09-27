@@ -1,4 +1,5 @@
 import { site } from "@/lib/data/site";
+import { cities } from "@/lib/data/cities";
 
 interface JsonLdProps {
   data: Record<string, unknown>;
@@ -32,10 +33,10 @@ export function OrganizationJsonLd() {
         description: site.description,
         telephone: site.phone,
         email: site.email,
-        areaServed: {
-          "@type": "AdministrativeArea",
-          name: site.region,
-        },
+        areaServed: [
+          { "@type": "AdministrativeArea", name: site.region },
+          ...cities.map((c) => ({ "@type": "City", name: c.label })),
+        ],
         sameAs: [site.social.instagram, site.social.tiktok, site.social.snapchat],
         contactPoint: {
           "@type": "ContactPoint",
@@ -110,9 +111,21 @@ export function LocalBusinessJsonLd({
           lng && {
             geo: { "@type": "GeoCoordinates", latitude: lat, longitude: lng },
           }),
+        // Toutes les villes couvertes, pas seulement la région : c'est ce
+        // qui fait remonter la fiche sur les requêtes locales.
         areaServed: city
           ? { "@type": "City", name: city }
-          : { "@type": "AdministrativeArea", name: site.region },
+          : [
+              { "@type": "AdministrativeArea", name: site.region },
+              ...cities.map((c) => ({
+                "@type": "City",
+                name: c.label,
+                containedInPlace: {
+                  "@type": "AdministrativeArea",
+                  name: c.department,
+                },
+              })),
+            ],
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -224,9 +237,10 @@ export function ServiceJsonLd({
           priceCurrency: "EUR",
           priceSpecification: {
             "@type": "UnitPriceSpecification",
-            price: "9.90",
+            price: "7.50",
             priceCurrency: "EUR",
             unitText: "MON",
+            name: "Abonnement connectivité, formule 12 mois",
           },
         },
       }}
@@ -319,6 +333,32 @@ export function HowToJsonLd({
           name: s.name,
           text: s.text,
         })),
+      }}
+    />
+  );
+}
+
+/**
+ * Speakable — indique aux assistants vocaux quels passages lire à voix haute.
+ * À poser sur les pages qui répondent à une question directe.
+ */
+export function SpeakableJsonLd({
+  url,
+  selectors = ["h1", ".speakable"],
+}: {
+  url: string;
+  selectors?: string[];
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        url,
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: selectors,
+        },
       }}
     />
   );

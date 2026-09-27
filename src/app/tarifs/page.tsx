@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import { products } from "@/lib/data/products";
 import { plans, site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui/Section";
-import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
+import { BreadcrumbJsonLd, FAQJsonLd ,
+  SpeakableJsonLd,
+} from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Tarifs & abonnements — le coût réel d'un traceur GPS sur 3 ans",
@@ -139,6 +141,7 @@ export default function TarifsPage() {
     <>
       <BreadcrumbJsonLd items={crumbs.map((c) => ({ name: c.name, url: c.href }))} />
       <FAQJsonLd questions={faq} />
+      <SpeakableJsonLd url={`${site.url}/tarifs`} />
 
       <div className="mx-auto max-w-7xl px-4 pt-8">
         <Breadcrumbs items={crumbs} />

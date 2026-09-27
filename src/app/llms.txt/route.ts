@@ -48,6 +48,7 @@ ${articles.map((a) => `- [${a.title}](${site.url}/blog/${a.slug}) — ${a.metaDe
 
 - [FAQ](${site.url}/faq)
 - [Demander un devis](${site.url}/devis)
+- [À propos](${site.url}/a-propos)
 - [Contact](${site.url}/contact)
 `;
 

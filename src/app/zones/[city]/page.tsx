@@ -7,6 +7,7 @@ import { products } from "@/lib/data/products";
 import { site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui/Section";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { PriceStrip } from "@/components/ui/PriceStrip";
 import {
   BreadcrumbJsonLd,
   FAQJsonLd,
@@ -230,6 +231,7 @@ export default async function CityPage({
             <ProductCard key={p.slug} product={p} />
           ))}
         </div>
+        <PriceStrip context={city.inCity} className="mt-10 max-w-3xl" />
       </Section>
 
       {/* FAQ */}

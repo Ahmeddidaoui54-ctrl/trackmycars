@@ -7,6 +7,7 @@ import { getCitiesForSector } from "@/lib/data/cities";
 import { site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui/Section";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { PriceStrip } from "@/components/ui/PriceStrip";
 import {
   BreadcrumbJsonLd,
   FAQJsonLd,
@@ -147,6 +148,11 @@ export default async function SectorPage({
             <ProductCard key={p.slug} product={p} />
           ))}
         </div>
+        <PriceStrip
+          only={sector.recommendedProducts}
+          context={`pour ${sector.plural}`}
+          className="mt-10 max-w-3xl"
+        />
       </Section>
 
       {/* Maillage géo */}

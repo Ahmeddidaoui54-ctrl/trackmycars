@@ -3,7 +3,9 @@ import { products } from "@/lib/data/products";
 import { sectors } from "@/lib/data/sectors";
 import { site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui/Section";
-import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
+import { BreadcrumbJsonLd, FAQJsonLd ,
+  SpeakableJsonLd,
+} from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "FAQ — Traceur GPS, installation, légalité, abonnement",
@@ -144,6 +146,7 @@ export default function FaqPage() {
     <>
       <BreadcrumbJsonLd items={crumbs.map((c) => ({ name: c.name, url: c.href }))} />
       <FAQJsonLd questions={allQuestions} />
+      <SpeakableJsonLd url={`${site.url}/faq`} />
 
       <div className="mx-auto max-w-7xl px-4 pt-8">
         <Breadcrumbs items={crumbs} />

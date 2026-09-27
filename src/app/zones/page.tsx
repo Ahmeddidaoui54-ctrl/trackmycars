@@ -5,6 +5,7 @@ import { getSector } from "@/lib/data/sectors";
 import { site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs } from "@/components/ui/Section";
 import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
+import { PriceStrip } from "@/components/ui/PriceStrip";
 
 export const metadata: Metadata = {
   title: "Zones desservies — Traceur GPS en région PACA",
@@ -89,6 +90,8 @@ export default function ZonesPage() {
             </div>
           ))}
         </div>
+
+        <PriceStrip className="mt-14 max-w-3xl" />
 
         <div className="mt-14">
           <CTA href="/devis">Vérifier la couverture de ma zone</CTA>

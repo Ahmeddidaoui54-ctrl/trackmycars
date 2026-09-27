@@ -2,7 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui/Section";
-import { BreadcrumbJsonLd, FAQJsonLd, HowToJsonLd } from "@/components/seo/JsonLd";
+import { BreadcrumbJsonLd, FAQJsonLd, HowToJsonLd ,
+  SpeakableJsonLd,
+} from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Géolocaliser un véhicule : ce que la loi autorise vraiment",
@@ -132,6 +134,7 @@ export default function GuideLegalPage() {
     <>
       <BreadcrumbJsonLd items={crumbs.map((c) => ({ name: c.name, url: c.href }))} />
       <FAQJsonLd questions={faq} />
+      <SpeakableJsonLd url={`${site.url}/guide-legal`} />
       <HowToJsonLd
         name="Mettre en place une géolocalisation de véhicules conforme"
         steps={etapes}

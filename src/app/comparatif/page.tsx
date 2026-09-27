@@ -5,7 +5,9 @@ import { products } from "@/lib/data/products";
 import { site } from "@/lib/data/site";
 import { Section, SectionHead, CTA, Breadcrumbs, FaqList } from "@/components/ui/Section";
 import { ProductCard } from "@/components/ui/ProductCard";
-import { BreadcrumbJsonLd, FAQJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
+import { BreadcrumbJsonLd, FAQJsonLd, ItemListJsonLd ,
+  SpeakableJsonLd,
+} from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Comparatif traceurs GPS 2026 — quel modèle choisir vraiment",
@@ -85,6 +87,7 @@ export default function ComparatifPage() {
     <>
       <BreadcrumbJsonLd items={crumbs.map((c) => ({ name: c.name, url: c.href }))} />
       <FAQJsonLd questions={faq} />
+      <SpeakableJsonLd url={`${site.url}/comparatif`} />
       <ItemListJsonLd
         name="Traceurs GPS comparés"
         items={competitors.map((c) => ({ name: c.name, url: "/comparatif" }))}

@@ -49,6 +49,7 @@ export default function PlanDuSitePage() {
                 { href: "/blog", label: "Blog" },
                 { href: "/devis", label: "Demander un devis" },
                 { href: "/faq", label: "FAQ" },
+                { href: "/a-propos", label: "À propos" },
                 { href: "/contact", label: "Contact" },
               ].map((l) => (
                 <li key={l.href}>

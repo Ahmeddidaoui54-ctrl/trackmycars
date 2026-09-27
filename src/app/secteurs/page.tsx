@@ -4,6 +4,7 @@ import { sectors } from "@/lib/data/sectors";
 import { getCitiesForSector } from "@/lib/data/cities";
 import { Section, SectionHead, CTA, Breadcrumbs } from "@/components/ui/Section";
 import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
+import { PriceStrip } from "@/components/ui/PriceStrip";
 
 export const metadata: Metadata = {
   title: "Secteurs équipés — Traceur GPS par type de véhicule",
@@ -88,6 +89,8 @@ export default function SecteursPage() {
             );
           })}
         </div>
+
+        <PriceStrip className="mt-14 max-w-3xl" />
 
         <div className="mt-12">
           <CTA href="/devis">Décrire mon besoin</CTA>

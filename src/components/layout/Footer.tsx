@@ -117,6 +117,7 @@ export function Footer() {
         <div className="mt-12 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
           <p>© {new Date().getFullYear()} {site.name}. Tous droits réservés.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link href="/a-propos" className="hover:text-cta">À propos</Link>
             <Link href="/contact" className="hover:text-cta">Contact</Link>
             <Link href="/mentions-legales" className="hover:text-cta">Mentions légales</Link>
             <Link href="/cgv" className="hover:text-cta">CGV</Link>
