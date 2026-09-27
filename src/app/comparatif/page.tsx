@@ -10,9 +10,9 @@ import { BreadcrumbJsonLd, FAQJsonLd, ItemListJsonLd ,
 } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Comparatif traceurs GPS 2026 — quel modèle choisir vraiment",
+  title: "Comparatif traceurs GPS 2026 — lequel choisir",
   description:
-    "Comparatif honnête des traceurs GPS : Track My Cars, Invoxia, Beepings, TK905, GeoRide, Quartix. Prix réel sur 3 ans, autonomie, coupe-moteur. Y compris quand nous ne sommes pas les moins chers.",
+    "Comparatif de 7 traceurs GPS : Invoxia, Beepings, TK905, GeoRide, Quartix. Coût réel sur 3 ans, autonomie, coupe-moteur — y compris quand nous perdons.",
   keywords: [
     "comparatif traceur gps",
     "meilleur traceur gps",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/comparatif" },
   openGraph: {
-    title: "Comparatif traceurs GPS 2026 — quel modèle choisir vraiment",
+    title: "Comparatif traceurs GPS 2026 — lequel choisir",
     description:
       "Sept solutions comparées sur le prix réel à trois ans, l'autonomie et les fonctions. Sans complaisance, y compris envers nous.",
     url: `${site.url}/comparatif`,

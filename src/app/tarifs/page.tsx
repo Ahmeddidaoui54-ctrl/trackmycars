@@ -8,7 +8,7 @@ import { BreadcrumbJsonLd, FAQJsonLd ,
 } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Tarifs & abonnements — le coût réel d'un traceur GPS sur 3 ans",
+  title: "Tarifs traceur GPS — le coût réel sur 3 ans",
   description:
     "Combien coûte vraiment un traceur GPS ? Prix du boîtier, coût de la carte SIM, total sur 3 ans. Pourquoi le « sans abonnement » n'existe pas, et ce que vous payez réellement.",
   keywords: [

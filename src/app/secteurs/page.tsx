@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 import { PriceStrip } from "@/components/ui/PriceStrip";
 
 export const metadata: Metadata = {
-  title: "Secteurs équipés — Traceur GPS par type de véhicule",
+  title: "Traceur GPS par secteur — 12 usages",
   description:
     "Traceur GPS adapté à votre activité : voiture, moto, camion, taxi VTC, bus, flotte d'entreprise, engin de chantier, utilitaire, remorque, bateau, camping-car, location.",
   alternates: { canonical: "/secteurs" },
@@ -36,6 +36,7 @@ export default function SecteursPage() {
           eyebrow="Ciblage par usage"
           title="Le risque n'est pas le même selon ce que vous protégez"
           lead="Un vol de deux-roues, une non-restitution de véhicule loué et une disparition de mini-pelle sur chantier appellent trois réponses techniques différentes. Sélectionnez votre secteur pour la configuration qui correspond réellement à votre exposition."
+          as="h1"
         />
 
         <div className="mt-14 space-y-px bg-border border border-border rounded-lg overflow-hidden">

@@ -8,7 +8,7 @@ import { BreadcrumbJsonLd, FAQJsonLd ,
 } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "FAQ — Traceur GPS, installation, légalité, abonnement",
+  title: "FAQ traceur GPS — vos questions",
   description:
     "Toutes les réponses sur les traceurs GPS : choix du modèle, installation, légalité de la géolocalisation, RGPD, couverture réseau, abonnement et garantie.",
   alternates: { canonical: "/faq" },
@@ -170,6 +170,7 @@ export default function FaqPage() {
           eyebrow="FAQ"
           title="Toutes les réponses, sans détour"
           lead="Fonctionnement technique, cadre légal, garanties et service : voici ce qu'on nous demande le plus. Si votre question n'y figure pas, appelez-nous, la réponse prend deux minutes."
+          as="h1"
         />
 
         <div className="mt-14 space-y-14 max-w-4xl">

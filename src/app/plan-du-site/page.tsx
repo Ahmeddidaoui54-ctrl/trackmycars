@@ -31,7 +31,8 @@ export default function PlanDuSitePage() {
       </div>
 
       <Section className="pt-6!">
-        <SectionHead eyebrow="Navigation" title="Plan du site" />
+        <SectionHead eyebrow="Navigation" title="Plan du site"   as="h1"
+        />
 
         <div className="mt-12 grid gap-12 lg:grid-cols-3">
           <div>

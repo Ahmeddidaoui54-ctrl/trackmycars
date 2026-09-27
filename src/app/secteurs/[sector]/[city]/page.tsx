@@ -31,8 +31,9 @@ export async function generateMetadata({
   const city = getCity(citySlug);
   if (!sector || !city) return {};
 
-  const title = `Traceur GPS ${sector.label} ${city.inCity} (${city.departmentCode})`;
-  const description = `${sector.label} : installation de traceur GPS ${city.inCity} et alentours. Suivi temps réel, alerte de mouvement, coupe-moteur. Intervention sur site en ${city.department}.`;
+  const ville = city.shortLabel ?? city.label;
+  const title = `${sector.label} à ${ville} — traceur GPS`;
+  const description = `${sector.label} : traceur GPS installé ${city.inCity}. Suivi temps réel, alerte de mouvement, coupe-moteur. Dès 79 €, intervention en ${city.department}.`;
 
   return {
     title,

@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
-  description: `Mentions légales du site ${site.url} — éditeur, hébergeur et propriété intellectuelle.`,
+  description: `Mentions légales de ${site.name} : éditeur du site, hébergement, propriété intellectuelle, traitement des données et médiation de la consommation.`,
   alternates: { canonical: "/mentions-legales" },
   robots: { index: false, follow: true },
 };

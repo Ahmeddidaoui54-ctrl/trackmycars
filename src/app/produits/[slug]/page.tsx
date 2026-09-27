@@ -27,7 +27,9 @@ export async function generateMetadata({
   if (!product) return {};
 
   const title = `${product.name} — ${product.price} €`;
-  const description = `${product.tagline}. ${product.description.split(". ")[0]}. Garantie 2 ans, livraison gratuite, sans engagement.`;
+  // Google tronque au-delà de ~160 caractères : on compose court plutôt
+  // que de laisser une description générée déborder.
+  const description = `${product.name} à ${product.price} € : ${product.tagline.charAt(0).toLowerCase()}${product.tagline.slice(1)}. ${product.installation}. Garantie 2 ans, livraison gratuite.`;
 
   return {
     title,

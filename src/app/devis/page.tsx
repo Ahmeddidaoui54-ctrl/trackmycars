@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { QuoteForm } from "@/components/forms/QuoteForm";
 
 export const metadata: Metadata = {
-  title: "Demander un devis — Traceur GPS sur mesure",
+  title: "Demander un devis traceur GPS",
   description:
     "Décrivez votre parc et votre besoin : nous revenons vers vous avec une configuration chiffrée, le délai d'installation et le tarif total. Réponse sous 24 h ouvrées.",
   alternates: { canonical: "/devis" },

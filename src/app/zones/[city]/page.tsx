@@ -28,7 +28,7 @@ export async function generateMetadata({
   const city = getCity(slug);
   if (!city) return {};
 
-  const title = `Traceur GPS ${city.inCity} (${city.departmentCode}) — Installation sur site`;
+  const title = `Traceur GPS ${city.shortLabel ?? city.label} (${city.departmentCode})`;
   const description = `Tracker GPS ${city.inCity} : installation par nos techniciens en ${city.department}, suivi temps réel, antivol et gestion de flotte. Sans engagement, garantie 2 ans.`;
 
   return {

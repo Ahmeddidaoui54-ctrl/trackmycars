@@ -8,7 +8,7 @@ import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 import { PriceStrip } from "@/components/ui/PriceStrip";
 
 export const metadata: Metadata = {
-  title: "Zones desservies — Traceur GPS en région PACA",
+  title: "Traceur GPS en PACA — zones desservies",
   description:
     "Installation et livraison de traceurs GPS à Marseille, Nice, Toulon, Aix-en-Provence, Avignon, Cannes, Antibes, Hyères, Fréjus, Arles, Gap et Salon-de-Provence.",
   alternates: { canonical: "/zones" },
@@ -42,6 +42,7 @@ export default function ZonesPage() {
           eyebrow="Couverture régionale"
           title={`Intervention sur toute la région ${site.region}`}
           lead="Nos techniciens se déplacent sur site pour les installations câblées, dans les cinq départements de la région. Les boîtiers autonomes et OBD sont livrés gratuitement partout en France sous 48 à 72 heures."
+          as="h1"
         />
 
         <div className="mt-14 space-y-12">

@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd, FAQJsonLd, HowToJsonLd ,
 } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Géolocaliser un véhicule : ce que la loi autorise vraiment",
+  title: "Géolocaliser un véhicule : ce que dit la loi",
   description:
     "Géolocalisation de véhicule et de salarié : obligations CNIL, articles L.1222-4 et L.2312-38, durée de conservation, sanctions. Guide complet et modèles à télécharger.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/guide-legal" },
   openGraph: {
-    title: "Géolocaliser un véhicule : ce que la loi autorise vraiment",
+    title: "Géolocaliser un véhicule : ce que dit la loi",
     description:
       "Les obligations réelles, article par article, et ce qui expose à des sanctions. Avec des modèles de documents à télécharger.",
     url: `${site.url}/guide-legal`,

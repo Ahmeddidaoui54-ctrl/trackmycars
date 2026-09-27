@@ -1,6 +1,8 @@
 export interface City {
   slug: string;
   label: string;
+  /** Nom court, pour les balises title où le nom complet déborde */
+  shortLabel?: string;
   /** Ex. "à Marseille", "au Cannet" — pour insertion dans les titres */
   inCity: string;
   department: string;
@@ -100,6 +102,7 @@ export const cities: City[] = [
   {
     slug: "aix-en-provence",
     label: "Aix-en-Provence",
+    shortLabel: "Aix",
     inCity: "à Aix-en-Provence",
     department: "Bouches-du-Rhône",
     departmentCode: "13",
@@ -223,6 +226,7 @@ export const cities: City[] = [
   {
     slug: "frejus-saint-raphael",
     label: "Fréjus — Saint-Raphaël",
+    shortLabel: "Fréjus",
     inCity: "à Fréjus et Saint-Raphaël",
     department: "Var",
     departmentCode: "83",
@@ -294,6 +298,7 @@ export const cities: City[] = [
   {
     slug: "salon-de-provence",
     label: "Salon-de-Provence",
+    shortLabel: "Salon",
     inCity: "à Salon-de-Provence",
     department: "Bouches-du-Rhône",
     departmentCode: "13",

@@ -6,7 +6,7 @@ import { Section, SectionHead, CTA, Breadcrumbs } from "@/components/ui/Section"
 import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Blog — vol de véhicules, géolocalisation et cadre légal",
+  title: "Blog — vol, géolocalisation et droit",
   description:
     "Nos articles sur le vol de véhicules, la détection de traceurs, le cadre légal de la géolocalisation et la protection des flottes professionnelles.",
   alternates: { canonical: "/blog" },
@@ -42,6 +42,7 @@ export default function BlogPage() {
           eyebrow="Blog"
           title="Ce qu'on sait, et qu'on préfère écrire"
           lead="Des articles utiles même à qui ne nous achètera rien : les démarches après un vol, la détection de traceurs, le cadre légal de la géolocalisation."
+          as="h1"
         />
 
         <div className="mt-14 space-y-px bg-border border border-border rounded-lg overflow-hidden">

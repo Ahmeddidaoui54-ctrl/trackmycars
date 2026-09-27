@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/ui/ProductCard";
 import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Nos trackers GPS — Aimanté, OBD, Coupe-moteur, Mini",
+  title: "Nos traceurs GPS — 5 modèles de 79 à 199 €",
   description:
     "Cinq traceurs GPS professionnels de 79 € à 199 € : aimanté 30 jours d'autonomie, OBD sans installation, coupe-moteur antivol, mini discret. Garantie 2 ans.",
   alternates: { canonical: "/produits" },
@@ -40,6 +40,7 @@ export default function ProduitsPage() {
           eyebrow="Catalogue"
           title="Cinq boîtiers, cinq façons de couvrir un risque"
           lead="Tous nos trackers partagent la même application, les mêmes alertes et la même couverture réseau sur plus de 150 pays. Ils diffèrent par le mode d'alimentation, la discrétion et la capacité d'immobilisation à distance."
+          as="h1"
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

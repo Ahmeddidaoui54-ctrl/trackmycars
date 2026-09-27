@@ -24,16 +24,23 @@ export function SectionHead({
   title,
   lead,
   centered = false,
+  as = "h2",
 }: {
   eyebrow?: string;
   title: string;
   lead?: string;
   centered?: boolean;
+  /**
+   * Niveau du titre. Une page doit avoir exactement un H1 : sur les pages
+   * d'index, le premier SectionHead le porte.
+   */
+  as?: "h1" | "h2";
 }) {
+  const Heading = as;
   return (
     <div className={`max-w-3xl ${centered ? "mx-auto text-center" : ""}`}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="mt-3 text-3xl sm:text-4xl">{title}</h2>
+      <Heading className="mt-3 text-3xl sm:text-4xl">{title}</Heading>
       <div className={`rule mt-5 ${centered ? "mx-auto" : ""}`} />
       {lead && <p className="mt-5 text-base leading-relaxed opacity-80">{lead}</p>}
     </div>

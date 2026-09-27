@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "Traceur GPS Véhicules & Flottes — Suivi Temps Réel | PACA",
   description:
-    "Trackers GPS professionnels pour voitures, flottes, poids lourds et engins. Suivi temps réel, antivol, coupe-moteur. Installation Marseille, Nice, Toulon, Aix. Sans engagement, garantie 2 ans.",
+    "Traceurs GPS pour voitures, flottes, poids lourds et engins. Installation à Marseille, Nice, Toulon, Aix. Dès 79 € + 7,50 €/mois, garantie 2 ans.",
   alternates: { canonical: "/" },
 };
 

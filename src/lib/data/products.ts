@@ -73,7 +73,7 @@ export const products: Product[] = [
     description:
       "Le tracker coupe-moteur est notre solution antivol la plus complète. Câblé de façon invisible sur le circuit électrique du véhicule, il permet non seulement de localiser votre bien en temps réel, mais aussi de couper le démarrage à distance depuis votre smartphone. En cas de vol, vous immobilisez le véhicule dès son prochain arrêt et transmettez la position exacte aux forces de l'ordre.",
     autonomy: "Alimentation véhicule + batterie de secours",
-    installation: "Câblée — installation par nos techniciens recommandée",
+    installation: "Câblée, par nos techniciens",
     features: [
       "Application",
       "Suivi en temps réel",
