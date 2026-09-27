@@ -4,6 +4,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollTop } from "@/components/ui/ScrollTop";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
+import { WebVitals } from "@/components/analytics/WebVitals";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site } from "@/lib/data/site";
 import "./globals.css";
 
@@ -100,6 +102,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <WebVitals />
+        <SpeedInsights />
         <ScrollTop />
       </body>
     </html>
