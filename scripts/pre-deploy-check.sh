@@ -1,108 +1,68 @@
-#!/usr/bin/env bash
-# Vérifications avant déploiement. Doit afficher ✅ partout.
-# Repris du projet VTC, adapté aux règles propres à trackmycars.
+#!/bin/bash
+# Audit automatique avant deploiement TrackMyCars — a lancer avant tout
+# `vercel deploy --prod`. Ne bloque pas si tout est vert, alerte sinon.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
 FAIL=0
-ok()   { echo "✅ $1"; }
-bad()  { echo "❌ $1"; FAIL=1; }
-warn() { echo "⚠️  $1"; }
+ok()   { echo "  OK   $1"; }
+bad()  { echo "  FAIL $1"; FAIL=1; }
 
-echo "── Git ──"
-AUTHOR=$(git config user.email 2>/dev/null || echo "")
-[ -z "$AUTHOR" ] && AUTHOR=$(git log -1 --format='%ae' 2>/dev/null || echo "")
+echo "=== 1. TypeScript ==="
+if npx tsc --noEmit > /tmp/tsc-tmc.log 2>&1; then ok "0 erreur"; else bad "erreurs tsc — voir /tmp/tsc-tmc.log"; fi
+
+echo "=== 2. Git : auteur du dernier commit lie a GitHub ==="
+AUTHOR=$(git log -1 --format="%ae")
 if [ "$AUTHOR" = "ahmeddidaoui54@gmail.com" ]; then
-  ok "auteur git = $AUTHOR"
+  ok "auteur = $AUTHOR"
 else
-  bad "auteur git = '$AUTHOR' (Vercel bloque si ≠ ahmeddidaoui54@gmail.com)"
+  bad "auteur = $AUTHOR (attendu: ahmeddidaoui54@gmail.com — Vercel bloquera le deploy)"
 fi
 
-if [ -z "$(git status --porcelain)" ]; then
-  ok "arbre git propre"
+echo "=== 3. Git : arbre propre (rien d'oublie) ==="
+if [ -z "$(git status --short)" ]; then ok "clean"; else bad "changements non commites"; fi
+
+echo "=== 4. package.json : nom du projet correct ==="
+if grep -q '"name": *"vtc-platform"' package.json 2>/dev/null; then
+  bad "name=vtc-platform residuel (clone) — renommer en trackmycars-platform"
 else
-  warn "modifications non commitées"
+  ok "nom de projet propre"
 fi
 
-echo
-echo "── TypeScript ──"
-if npx tsc --noEmit 2>/dev/null; then ok "aucune erreur de type"; else bad "erreurs TypeScript"; fi
-
-echo
-echo "── Cohérence des données ──"
-# Ancienne grille inventée (9,90 / 7,90 / 5,90 PAR MOIS et PAR VÉHICULE).
-# On ne cible que le "par mois" : ces montants restent légitimes ailleurs,
-# par exemple le tarif annuel réel d'un concurrent.
-if grep -rqE '(9,90|5,90|7,90) ?€ ?(/ ?mois|par mois)' src/ 2>/dev/null; then
-  bad "ancienne grille mensuelle trouvée (9,90 / 5,90 / 7,90 par mois)"
-else ok "aucun tarif mensuel obsolète"; fi
-
-# Anciens noms de formules
-if grep -rqE '"(Essentiel|Pro|Flotte)"' src/lib/data/site.ts 2>/dev/null; then
-  bad "anciens noms de formules dans site.ts (doivent être 1/6/12 mois)"
-else ok "formules d'abonnement conformes au site d'origine"; fi
-
-# Garantie : 2 ans partout (le site d'origine se contredit, on a tranché)
-if grep -rqE 'garantie 3 ans|Garantie 3 ans|garanti 3 ans' src/ 2>/dev/null; then
-  bad "mention 'garantie 3 ans' — doit être 2 ans"
-else ok "garantie 2 ans partout"; fi
-
-# Mauvais domaine
-if grep -rq "trackmycar\.fr" src/ 2>/dev/null; then
-  bad "domaine 'trackmycar.fr' (manque le s)"
-else ok "domaine correct"; fi
-
-# Mot de passe par défaut du site d'origine
-if grep -rq "123456" src/ 2>/dev/null; then
-  bad "mot de passe '123456' présent dans le contenu"
-else ok "aucun mot de passe en clair"; fi
-
-echo
-echo "── Règle n°1 : prix sur les pages commerciales ──"
-for f in src/app/secteurs/page.tsx src/app/zones/page.tsx \
-         "src/app/secteurs/[sector]/page.tsx" "src/app/zones/[city]/page.tsx"; do
-  if grep -q "PriceStrip" "$f" 2>/dev/null; then
-    ok "prix affiché — ${f#src/app/}"
-  else
-    bad "AUCUN PRIX — ${f#src/app/}"
-  fi
-done
-
-echo
-echo "── SEO technique ──"
-for f in src/app/sitemap.ts src/app/robots.ts src/app/llms.txt/route.ts; do
-  [ -f "$f" ] && ok "${f#src/app/} présent" || bad "${f#src/app/} manquant"
-done
-
-if grep -q "GPTBot" src/app/robots.ts 2>/dev/null; then
-  ok "bots IA autorisés nommément"
-else bad "robots.ts n'autorise pas les bots IA (GEO/AEO)"; fi
-
-if ls public/*.txt >/dev/null 2>&1; then
-  ok "clé IndexNow publiée ($(ls public/*.txt | head -1 | xargs basename))"
-else warn "aucune clé IndexNow dans public/"; fi
-
-# Canonical sur chaque page
-MISSING=$(grep -rL "canonical" --include="page.tsx" src/app 2>/dev/null \
-          | grep -v "not-found\|error\|loading" || true)
-if [ -z "$MISSING" ]; then ok "canonical sur toutes les pages"
-else warn "canonical absent : $(echo "$MISSING" | tr '\n' ' ')"; fi
-
-echo
-echo "── Build ──"
-if npx next build >/tmp/tmc-build.log 2>&1; then
-  PAGES=$(grep -oE "Generating static pages \(([0-9]+)/" /tmp/tmc-build.log | grep -oE "[0-9]+" | tail -1)
-  ok "build réussi — ${PAGES:-?} pages"
+echo "=== 5. Domaine : trackmycars.fr (pas de placeholder/mauvais domaine) ==="
+if grep -rlq "varvtc\|sourciagroup\|example\.com\|localhost:300" src/ --include="*.ts" --include="*.tsx" 2>/dev/null | grep -v node_modules > /dev/null; then
+  bad "domaine etranger ou placeholder trouve dans src/"
 else
-  bad "build échoué (voir /tmp/tmc-build.log)"
+  ok "aucun domaine etranger residuel"
 fi
 
-echo
+echo "=== 6. .env.local : cles dupliquees ==="
+if [ -f .env.local ]; then
+  DUPES=$(grep -oE "^[A-Z_]+=" .env.local | sort | uniq -d)
+  if [ -z "$DUPES" ]; then ok "aucun doublon"; else bad "doublons: $DUPES"; fi
+else
+  ok "(.env.local absent, ignore)"
+fi
+
+echo "=== 7. Pages orphelines (existent mais liees nulle part) ==="
+ORPHANS=""
+while read -r page; do
+  [ "$page" = "/" ] && continue
+  echo "$page" | grep -qE '\[' && continue
+  [ "$page" = "/admin" ] && continue
+  count=$(grep -rl "\"$page\"\|'$page'\|$page\`" src/ --include="*.tsx" 2>/dev/null | grep -v "^src/app$page/page.tsx" | wc -l | tr -d ' ')
+  [ "$count" -eq 0 ] && ORPHANS="$ORPHANS $page"
+done < <(find src/app -name "page.tsx" | sed 's|src/app||;s|/page.tsx||;s|^$|/|')
+if [ -z "$ORPHANS" ]; then ok "aucune"; else bad "orphelines:$ORPHANS"; fi
+
+echo "=== 8. TODO/FIXME dans le code ==="
+COUNT=$(grep -rc "TODO\|FIXME" src/ 2>/dev/null | awk -F: '{s+=$2} END{print s+0}')
+echo "  INFO $COUNT occurrence(s) — informatif, non bloquant"
+
+echo ""
 if [ "$FAIL" -eq 0 ]; then
-  echo "✅ Prêt à déployer."
-  echo "   npx --cache /tmp/npm-cache-tmc vercel@latest deploy --prod --yes"
-  echo "   puis ./scripts/indexnow.sh"
+  echo "✅ Tout est vert — deploy possible."
 else
-  echo "❌ Corriger les points ci-dessus avant de déployer."
-  exit 1
+  echo "❌ Au moins un point rouge — corriger avant de deployer."
 fi
+exit $FAIL

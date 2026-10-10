@@ -32,3 +32,6 @@ yarn-error.log*
 next-env.d.ts
 
 # Vidéo source non compressée (le fichier servi est public/video/hero.mp4)
+
+# cle compte de service Google Search Console — ne jamais committer
+gsc-key.json
