@@ -2,6 +2,7 @@
 // Style cohérent : palette luxe-voyage bleu nuit + or champagne
 
 import { ImageResponse } from "next/og";
+import { site } from "@/lib/data/site";
 
 interface PageOgParams {
   eyebrow: string;
@@ -100,7 +101,7 @@ export function pageOgImage(p: PageOgParams) {
             letterSpacing: 2,
           }}
         >
-          varvtc.fr · +33 6 04 43 34 20
+          {`${site.url.replace(/^https?:\/\//, "")} · ${site.phoneDisplay}`}
         </div>
       </div>
     ),
