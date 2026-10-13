@@ -35,7 +35,10 @@ export default function MentionsLegalesPage() {
               <p className="mt-3">
                 {site.legalName}
                 <br />
-                {/* À compléter : forme juridique, capital social, SIREN/SIRET, RCS, TVA intracommunautaire, adresse du siège */}
+                Mentions légales complètes (forme juridique, capital, SIREN/SIRET,
+                RCS, TVA intracommunautaire, adresse du siège) en cours de
+                rattachement — mise à jour prochaine.
+                <br />
                 Téléphone : {site.phoneDisplay}
                 <br />
                 Email : {site.email}
