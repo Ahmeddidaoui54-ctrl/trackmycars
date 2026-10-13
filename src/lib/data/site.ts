@@ -1,7 +1,11 @@
 export const site = {
   name: "Track My Cars",
   legalName: "Track My Cars",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://trackmycars.fr",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "https://trackmycars.fr"),
   phone: "+33651111609",
   phoneDisplay: "06 51 11 16 09",
   email: "contact@trackmycars.fr",

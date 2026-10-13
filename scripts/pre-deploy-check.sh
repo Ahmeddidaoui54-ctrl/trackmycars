@@ -29,11 +29,13 @@ else
   ok "nom de projet propre"
 fi
 
-echo "=== 5. Domaine : trackmycars.fr (pas de placeholder/mauvais domaine) ==="
+echo "=== 5. Domaine : pas de placeholder/cross-projet (staging/preview Vercel autorises) ==="
+# N'impose PAS trackmycars.fr : les URLs *.vercel.app (preview/prod sans domaine) sont valides.
+# On bloque seulement les domaines d'AUTRES projets ou les placeholders de dev.
 if grep -rlq "varvtc\|sourciagroup\|example\.com\|localhost:300" src/ --include="*.ts" --include="*.tsx" 2>/dev/null | grep -v node_modules > /dev/null; then
-  bad "domaine etranger ou placeholder trouve dans src/"
+  bad "domaine d'un autre projet ou placeholder trouve dans src/"
 else
-  ok "aucun domaine etranger residuel"
+  ok "aucun domaine etranger residuel (vercel.app OK)"
 fi
 
 echo "=== 6. .env.local : cles dupliquees ==="
